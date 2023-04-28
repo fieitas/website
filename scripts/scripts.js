@@ -12,7 +12,7 @@ import {
   loadBlocks,
   loadCSS, decorateBlock, loadBlock,
 } from './lib-franklin.js';
-import {loadSidebar} from "../blocks/sidebar/sidebar";
+import {loadSidebar} from "../blocks/sidebar/sidebar.js";
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 
@@ -103,8 +103,10 @@ async function loadLazy(doc) {
   if (hash && element) element.scrollIntoView();
 
   loadHeader(doc.querySelector('header'));
+
+  loadSidebar(doc.querySelector('sidebar')); // load sidebar creates a new section
   loadFooter(doc.querySelector('footer'));
-  loadSidebar(doc.querySelector('main'));
+
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   addFavIcon(`${window.hlx.codeBasePath}/styles/favicon.png`);

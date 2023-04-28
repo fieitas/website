@@ -90,9 +90,28 @@ const isDesktop = window.matchMedia('(min-width: 900px)');
  * @param {Element} block The sidebar block element
  */
 export default async function decorate(block) {
-  console.log("banana")
-  // // fetch nav content
-  // const navMeta = getMetadata('sidebar');
+  // fetch nav content
+  const navMeta = getMetadata('sidebar');
+
+  if (navMeta !== ""){
+    const navPath = new URL(navMeta).pathname;
+    const resp = await fetch(`${navPath}.plain.html`);
+
+    if (resp.ok) {
+      const html = await resp.text();
+
+      // decorate nav DOM
+      const div = document.createElement('div');
+      div.id = 'sidebar';
+      div.innerHTML = html;
+
+
+      block.append(div);
+    }
+  }
+
+
+
   // const navPath = navMeta ? new URL(navMeta).pathname : '/sidebar';
   // const resp = await fetch(`${navPath}.plain.html`);
   //
@@ -100,34 +119,26 @@ export default async function decorate(block) {
   //   const html = await resp.text();
   //
   //   // decorate nav DOM
-  //   const nav = document.createElement('nav');
-  //   nav.id = 'sidebar';
-  //   nav.innerHTML = html;
+  //   const div = document.createElement('div');
+  //   div.id = 'sidebar';
+  //   console.log(html)
+  //   div.innerHTML = html;
   //
-  //   const classes = ['brand', 'sections', 'tools'];
-  //   classes.forEach((c, i) => {
-  //     const section = nav.children[i];
-  //     if (section) section.classList.add(`nav-${c}`);
-  //   });
   //
-  //   const navSections = nav.querySelector('.nav-sections');
-  //   if (navSections) {
-  //     navSections.querySelectorAll(':scope > ul > li').forEach((navSection) => {
-  //       if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
-  //       navSection.addEventListener('click', () => {
-  //         if (isDesktop.matches) {
-  //           const expanded = navSection.getAttribute('aria-expanded') === 'true';
-  //           toggleAllNavSections(navSections);
-  //           navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-  //         }
-  //       });
-  //     });
-  //   }
+  //   block.append(div);
+  //
+  //
+  //
   // }
 }
 
+export function createSidebarSection(placeholder){
+  const div = document.createElement('section');
+  div.id = 'sidebar';
+  div.innerHTML = html;
+}
+
 export function loadSidebar(sidebar) {
-  console.log("load sidebar")
   const sidebarBlock = buildBlock('sidebar', '');
   sidebar.append(sidebarBlock);
   decorateBlock(sidebarBlock);
