@@ -616,7 +616,7 @@ export function setup() {
 }
 
 /**
- * Auto initializiation.
+ * Auto initialization.
  */
 function init() {
   document.body.style.display = 'none';
