@@ -12,9 +12,8 @@ import {
   loadFooter,
   loadHeader,
   sampleRUM,
-  waitForLCP
+  waitForLCP,
 } from './lib-franklin.js';
-// import {loadSidebar} from "../blocks/sidebar/sidebar.js";
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 
@@ -61,9 +60,6 @@ export function decorateMain(main) {
   decorateBlocks(main);
 }
 
-
-
-
 /**
  * Loads everything needed to get to LCP.
  * @param {Element} doc The container element
@@ -97,6 +93,33 @@ export function addFavIcon(href) {
 }
 
 /**
+ * Loads the sidebar placeholder into the dom
+ * @param {Element} element the containing item where the section will be added at the end
+ */
+export function loadSidebar(element) {
+  const sidebarMeta = getMetadata('sidebar');
+  if (sidebarMeta !== '') {
+    element.classList.add('has-sidebar');
+
+    const sidebarSection = document.createElement('div');
+    sidebarSection.classList.add('section');
+
+    const sidebarBlock = buildBlock('sidebar', '');
+    sidebarBlock.dataset.path = new URL(sidebarMeta).pathname;
+
+    const numSections = element.children.length;
+    element.style = `grid-template-rows: repeat(${numSections}, auto);`;
+
+    sidebarSection.append(sidebarBlock);
+
+    decorateBlock(sidebarBlock);
+    element.append(sidebarSection);
+    return loadBlock(sidebarBlock);
+  }
+  return null;
+}
+
+/**
  * Loads everything that doesn't need to be delayed.
  * @param {Element} doc The container element
  */
@@ -112,54 +135,11 @@ async function loadLazy(doc) {
   loadSidebar(doc.querySelector('main'));
   loadFooter(doc.querySelector('footer'));
 
-
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   addFavIcon(`${window.hlx.codeBasePath}/styles/favicon.png`);
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
   sampleRUM.observe(main.querySelectorAll('picture > img'));
-}
-
-
-/**
- * Loads the sidebar placeholder into the dom
- * @param {Element} element the containing item where the section will be added at the end
- */
-export function loadSidebar(element) {
-  const sidebarMeta = getMetadata('sidebar');
-  if (sidebarMeta !== ""){
-    element.classList.add('has-sidebar')
-
-    const sidebarSection = document.createElement("div");
-    sidebarSection.classList.add('section');
-
-    const sidebarBlock = buildBlock('sidebar', '');
-    sidebarBlock.dataset.path = new URL(sidebarMeta).pathname;
-
-    const numSections = element.children.length;
-    element.style = `grid-template-rows: repeat(${numSections}, auto);`;
-
-
-    sidebarSection.append(sidebarBlock)
-
-    decorateBlock(sidebarBlock);
-    element.append(sidebarSection);
-    return loadBlock(sidebarBlock);
-  }
-}
-
-
-
-// detect if the main content contains a sidebar and applies some grid tings to the content
-function detectSidebar(main) {
-  const sidebar = main.querySelector(".section.sidebar-container");
-  console.log("try to find a sidebar");
-  if (sidebar) {
-    console.log("found sidebar");
-    main.classList.add('sidebar');
-    const sidebarOffset = sidebar.getAttribute('data-start-sidebar-at-section');
-
-  }
 }
 
 /**

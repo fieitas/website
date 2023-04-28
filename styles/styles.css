@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
- :root {
+:root {
   /* colors */
   --link-color: #035fe6;
   --link-hover-color: #136ff6;
@@ -225,11 +225,6 @@ main .section {
   padding: 10px 16px;
 }
 
-/* TODO remove*/
-/*main > * {*/
-/*  border: 1px dotted gray;*/
-/*}*/
-
 /* sidebar */
 main {
   display: grid;
@@ -251,9 +246,8 @@ main .section.sidebar-container {
   grid-row: unset;
 }
 
-/* small view port*/
+/* small view port */
 @media (min-width: 768px) {
-
   main.has-sidebar {
     grid-template-columns: auto 280px ;
   }
@@ -264,10 +258,10 @@ main .section.sidebar-container {
   }
 }
 
-/* medium view port*/
+/* medium view port
 @media (min-width: 960px) {
-
-}
+maybe use
+} */
 
 /* section metadata */
 main .section.highlight {
