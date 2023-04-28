@@ -1,18 +1,20 @@
 import {
-  sampleRUM,
   buildBlock,
-  loadHeader,
-  loadFooter,
+  decorateBlock,
+  decorateBlocks,
   decorateButtons,
   decorateIcons,
   decorateSections,
-  decorateBlocks,
-  decorateTemplateAndTheme,
-  waitForLCP,
+  getMetadata,
+  loadBlock,
   loadBlocks,
-  loadCSS, decorateBlock, loadBlock,
+  loadCSS,
+  loadFooter,
+  loadHeader,
+  sampleRUM,
+  waitForLCP
 } from './lib-franklin.js';
-import {loadSidebar} from "../blocks/sidebar/sidebar.js";
+// import {loadSidebar} from "../blocks/sidebar/sidebar.js";
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 
@@ -20,6 +22,7 @@ const LCP_BLOCKS = []; // add your LCP blocks to the list
  * Builds hero block and prepends to main in a new section.
  * @param {Element} main The container element
  */
+// TODO: AFAIK we don't need the hero block
 function buildHeroBlock(main) {
   const h1 = main.querySelector('h1');
   const picture = main.querySelector('picture');
@@ -58,13 +61,16 @@ export function decorateMain(main) {
   decorateBlocks(main);
 }
 
+
+
+
 /**
  * Loads everything needed to get to LCP.
  * @param {Element} doc The container element
  */
 async function loadEager(doc) {
   // document.documentElement.lang = 'en';
-  decorateTemplateAndTheme();
+  // decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
@@ -103,8 +109,7 @@ async function loadLazy(doc) {
   if (hash && element) element.scrollIntoView();
 
   loadHeader(doc.querySelector('header'));
-
-  loadSidebar(doc.querySelector('sidebar')); // load sidebar creates a new section
+  loadSidebar(doc.querySelector('main'));
   loadFooter(doc.querySelector('footer'));
 
 
@@ -113,6 +118,48 @@ async function loadLazy(doc) {
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
   sampleRUM.observe(main.querySelectorAll('picture > img'));
+}
+
+
+/**
+ * Loads the sidebar placeholder into the dom
+ * @param {Element} element the containing item where the section will be added at the end
+ */
+export function loadSidebar(element) {
+  const sidebarMeta = getMetadata('sidebar');
+  if (sidebarMeta !== ""){
+    element.classList.add('has-sidebar')
+
+    const sidebarSection = document.createElement("div");
+    sidebarSection.classList.add('section');
+
+    const sidebarBlock = buildBlock('sidebar', '');
+    sidebarBlock.dataset.path = new URL(sidebarMeta).pathname;
+
+    const numSections = element.children.length;
+    element.style = `grid-template-rows: repeat(${numSections}, auto);`;
+
+
+    sidebarSection.append(sidebarBlock)
+
+    decorateBlock(sidebarBlock);
+    element.append(sidebarSection);
+    return loadBlock(sidebarBlock);
+  }
+}
+
+
+
+// detect if the main content contains a sidebar and applies some grid tings to the content
+function detectSidebar(main) {
+  const sidebar = main.querySelector(".section.sidebar-container");
+  console.log("try to find a sidebar");
+  if (sidebar) {
+    console.log("found sidebar");
+    main.classList.add('sidebar');
+    const sidebarOffset = sidebar.getAttribute('data-start-sidebar-at-section');
+
+  }
 }
 
 /**

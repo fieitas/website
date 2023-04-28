@@ -220,21 +220,53 @@ main img {
   width: 100%;
 }
 
+/* Starting content */
 main .section {
-  padding: 64px 16px;
+  padding: 10px 16px;
 }
 
-@media (min-width: 600px) {
-  main .section {
-    padding: 64px 32px;
+/* TODO remove*/
+/*main > * {*/
+/*  border: 1px dotted gray;*/
+/*}*/
+
+/* sidebar */
+main {
+  display: grid;
+  max-width: 960px;
+  margin: 0 auto;
+  grid-template-columns: auto ;
+}
+
+main > *:not(.section.sidebar-container) {
+  grid-column: 1;
+}
+
+main.has-sidebar {
+  grid-template-columns: auto ;
+}
+
+main .section.sidebar-container {
+  grid-column: unset;
+  grid-row: unset;
+}
+
+/* small view port*/
+@media (min-width: 768px) {
+
+  main.has-sidebar {
+    grid-template-columns: auto 280px ;
+  }
+
+  main .section.sidebar-container {
+    grid-column: 2;
+    grid-row: 1 / infinite;
   }
 }
 
-@media (min-width: 900px) {
-  .section > div {
-    max-width: 1200px;
-    margin: auto;
-  }
+/* medium view port*/
+@media (min-width: 960px) {
+
 }
 
 /* section metadata */
