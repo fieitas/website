@@ -3,6 +3,7 @@ header .nav-wrapper {
   background-color: var(--background-color);
   width: 100%;
   z-index: 2;
+  position: fixed;
 }
 
 header nav {
@@ -23,16 +24,17 @@ header nav {
 }
 
 header nav[aria-expanded="true"] {
-  position: relative;
-  z-index: 10;
   overflow-y: auto;
   min-height: 100vh;
-  background-color: white;
 }
 
 @media (min-width: 600px) {
+  header .nav-wrapper {
+    position: static;
+  }
+
   header nav {
-    padding: 0 2rem;
+    padding: 0;
   }
 }
 
