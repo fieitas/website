@@ -204,6 +204,11 @@ header nav .nav-sections ul > li > ul > li {
   font-weight: 500;
 }
 
+header nav .nav-sections ul > li > ul > li::before {
+  content: '- ';
+  padding-left: 1em;
+}
+
 
 
 header nav .nav-sections ul > li > ul {
@@ -269,6 +274,10 @@ header nav .nav-sections ul > li > ul {
   header nav .nav-sections > ul > li > ul {
     display: none;
     position: relative;
+  }
+
+  header nav .nav-sections ul > li > ul > li::before {
+    display: none;
   }
 
   header nav .nav-sections > ul > li[aria-expanded="true"] > ul {
