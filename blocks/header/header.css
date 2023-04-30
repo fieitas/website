@@ -27,6 +27,7 @@ header nav[aria-expanded="true"] {
   z-index: 10;
   overflow-y: auto;
   min-height: 100vh;
+  background-color: white;
 }
 
 @media (min-width: 600px) {
