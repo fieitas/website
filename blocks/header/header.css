@@ -27,6 +27,7 @@ header nav[aria-expanded="true"] {
   overflow-y: auto;
   min-height: 100vh;
   overscroll-behavior: none;
+  overscroll-behavior-y: contain;
 }
 
 @media (min-width: 600px) {
