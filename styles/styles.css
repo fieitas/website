@@ -54,6 +54,10 @@
   }
 }
 
+html {
+  overscroll-behavior: none;
+}
+
 body {
   font-size: var(--body-font-size-m);
   margin: 0;
