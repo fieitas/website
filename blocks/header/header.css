@@ -200,7 +200,7 @@ header nav .nav-sections ul  {
 }
 
 header nav .nav-sections ul > li {
-  font-weight: 700;
+  font-weight: 500;
 }
 
 header nav .nav-sections ul > li > ul > li {
@@ -265,7 +265,7 @@ header nav .nav-sections ul > li > ul {
     gap: 2em;
     margin: 0;
     font-size: var(--body-font-size-xs);
-    justify-content: space-around;
+    justify-content: space-between;
   }
 
   header nav .nav-sections > ul > li {
