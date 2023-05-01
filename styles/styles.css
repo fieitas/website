@@ -68,10 +68,6 @@ body {
   display: none;
 }
 
-body.noscroll {
-  overflow: hidden;
-}
-
 body.appear {
   display: unset;
 }
