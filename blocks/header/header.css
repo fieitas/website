@@ -28,15 +28,6 @@ header nav[aria-expanded="true"] {
   min-height: 100vh;
 }
 
-@media (min-width: 600px) {
-  header .nav-wrapper {
-    position: static;
-  }
-
-  header nav {
-    padding: 0;
-  }
-}
 
 @media (min-width: 900px) {
   header {
