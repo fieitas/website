@@ -191,9 +191,7 @@ header nav[aria-expanded="true"] .nav-sections {
   display: block;
   visibility: visible;
   align-self: start;
-  max-height: calc(100vh - var(--nav-height));
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
+  padding-bottom: 30%;
 }
 
 header nav .nav-sections ul  {
