@@ -21,7 +21,7 @@
 
   /* fonts */
   --body-font-family: 'helvetica neue', helvetica, ubuntu, roboto, noto, sans-serif;
-  --heading-font-family: var(--body-font-family);
+  --heading-font-family: 'Montserrat', helvetica, ubuntu, roboto, noto, sans-serif;
   --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 
   /* body sizes */
@@ -35,9 +35,10 @@
   --heading-font-size-l: 32px;
   --heading-font-size-m: 24px;
   --heading-font-size-s: 20px;
-  --heading-font-size-xs: 18px;
+  --heading-font-size-xs: 13px;
 
   /* nav height */
+  --nav-desktop-height: 230px;
   --nav-height: 64px;
 
 }
@@ -49,8 +50,13 @@
     --heading-font-size-l: 36px;
     --heading-font-size-m: 30px;
     --heading-font-size-s: 24px;
-    --heading-font-size-xs: 22px;
+    --heading-font-size-xs: 13px;
+    --content-width: 960px;
   }
+}
+
+html {
+  overscroll-behavior: none;
 }
 
 body {
@@ -228,7 +234,7 @@ main .section {
 /* sidebar */
 main {
   display: grid;
-  max-width: 960px;
+  max-width: var(--content-width);
   margin: 0 auto;
   grid-template-columns: auto ;
 }
