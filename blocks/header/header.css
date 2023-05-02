@@ -174,7 +174,6 @@ header nav .nav-sections {
   flex: 1 1 auto;
   display: none;
   visibility: hidden;
-  background-color: var(--overlay-color);
   overscroll-behavior: contain;
 }
 
@@ -249,10 +248,6 @@ header nav .nav-sections ul > li > ul {
     transform: rotate(315deg);
   }
 
-  header nav .nav-sections ul > li:hover {
-    border-bottom: 1px solid black;
-  }
-
   header nav .nav-sections ul {
     display: flex;
     gap: 2em;
@@ -266,6 +261,7 @@ header nav .nav-sections ul > li > ul {
     position: relative;
     font-size: var(--heading-font-size-xs);
   }
+
 
   header nav .nav-sections > ul > li > ul {
     display: none;
@@ -289,30 +285,13 @@ header nav .nav-sections ul > li > ul {
     border: 1px solid #CACACA
   }
 
-  /* header nav .nav-sections > ul > li > ul::before { */
-
-  /*  content: ''; */
-
-  /*  position: absolute; */
-
-  /*  top: -8px; */
-
-  /*  left: 8px; */
-
-  /*  width: 0; */
-
-  /*  height: 0; */
-
-  /*  border-style: solid; */
-
-  /*  border-width: 0 8px 8px; */
-
-  /*  border-color: transparent transparent var(--highlight-background-color) transparent; */
-
-  /* } */
-
   header nav .nav-sections > ul > li > ul > li {
     padding: 8px 0;
+  }
+
+
+  header nav .nav-sections ul > li:hover {
+    border-bottom: 1px solid black;
   }
 
   header nav .nav-meteo {
