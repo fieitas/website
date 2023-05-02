@@ -51,6 +51,7 @@
     --heading-font-size-m: 30px;
     --heading-font-size-s: 24px;
     --heading-font-size-xs: 13px;
+    --content-width: 960px;
   }
 }
 
@@ -233,7 +234,7 @@ main .section {
 /* sidebar */
 main {
   display: grid;
-  max-width: 960px;
+  max-width: var(--content-width);
   margin: 0 auto;
   grid-template-columns: auto ;
 }
