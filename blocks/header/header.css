@@ -45,8 +45,7 @@ header nav[aria-expanded="true"] {
     grid-template:
     'meteo meteo' auto
     'brand brand' auto
-    'sections sections' auto
-    'tools tools' auto / 0 1fr;
+    'sections sections' auto/ 0 1fr;
     min-height: 0;
     overflow: visible;
   }
@@ -309,7 +308,3 @@ header nav .nav-sections ul > li > ul {
   }
 }
 
-/* tools */
-header nav .nav-tools {
-  grid-area: tools;
-}
