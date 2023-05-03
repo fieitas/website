@@ -7,9 +7,7 @@ function closeOnEscape(e) {
   if (e.code === 'Escape') {
     const nav = document.getElementById('nav');
     const navSections = nav.querySelector('.nav-sections');
-    const navSectionExpanded = navSections.querySelector(
-      '[aria-expanded="true"]',
-    );
+    const navSectionExpanded = navSections.querySelector('[aria-expanded="true"]');
     if (navSectionExpanded && isDesktop.matches) {
       // eslint-disable-next-line no-use-before-define
       toggleAllNavSections(navSections);
@@ -55,20 +53,12 @@ function toggleAllNavSections(sections, expanded = false) {
  * @param {*} forceExpanded Optional param to force nav expand behavior when not null
  */
 function toggleMenu(nav, navSections, forceExpanded = null) {
-  const expanded = forceExpanded !== null
-    ? !forceExpanded
-    : nav.getAttribute('aria-expanded') === 'true';
+  const expanded = forceExpanded !== null ? !forceExpanded : nav.getAttribute('aria-expanded') === 'true';
   const button = nav.querySelector('.nav-hamburger button');
   document.body.style.overflowY = expanded || isDesktop.matches ? '' : 'hidden';
   nav.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-  toggleAllNavSections(
-    navSections,
-    expanded || isDesktop.matches ? 'false' : 'true',
-  );
-  button.setAttribute(
-    'aria-label',
-    expanded ? 'Open navigation' : 'Close navigation',
-  );
+  toggleAllNavSections(navSections, expanded || isDesktop.matches ? 'false' : 'true');
+  button.setAttribute('aria-label', expanded ? 'Open navigation' : 'Close navigation');
   // enable nav dropdown keyboard accessibility
   const navDrops = navSections.querySelectorAll('.nav-drop');
   if (isDesktop.matches) {
@@ -96,14 +86,35 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
 }
 
 /**
+ * Gets the nav path for the current language or defaults to /unsetnav
+ * @returns {string}
+ */
+function getLocalNavPath() {
+  const path = window.location.pathname;
+  const parts = path.split('/');
+  if (parts.length >= 2) {
+    const language = parts[1];
+    if (language) {
+      return `/${language}/nav`;
+    }
+  }
+  return '/unsetnav';
+}
+
+/**
  * decorates the header, mainly the nav
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
   // fetch nav content
   const navMeta = getMetadata('nav');
-  const navPath = navMeta ? new URL(navMeta).pathname : '/nav';
-  const resp = await fetch(`${navPath}.plain.html`);
+  const navPath = navMeta ? new URL(navMeta).pathname : getLocalNavPath();
+  let resp = await fetch(`${navPath}.plain.html`);
+
+  // use default nav if no nav is configured for the current location
+  if (!resp.ok) {
+    resp = await fetch('/unsetnav.plain.html');
+  }
 
   if (resp.ok) {
     const html = await resp.text();
@@ -127,10 +138,7 @@ export default async function decorate(block) {
           if (isDesktop.matches) {
             const expanded = navSection.getAttribute('aria-expanded') === 'true';
             toggleAllNavSections(navSections);
-            navSection.setAttribute(
-              'aria-expanded',
-              expanded ? 'false' : 'true',
-            );
+            navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
           }
         });
       });
