@@ -45,16 +45,34 @@ export default async function decorate(block) {
   links.classList.add('links');
 
   // Add extracted links as buttons
-  linksArray.forEach((link) => {
+  linksArray.forEach((link, index) => {
     const button = document.createElement('button');
     button.textContent = link.textContent;
+    // first link controls the accordion button
     // eslint-disable-next-line no-return-assign
-    button.onclick = () => window.location.href = link.href;
+    if (index === 0) {
+      button.setAttribute('id', 'expand-accordion');
+      button.setAttribute('aria-expanded', 'false');
+      button.setAttribute('aria-controls', 'details');
+      button.addEventListener('click', () => {
+        const accordion = document.querySelector('.covid-19-accordion .container .details');
+        accordion.classList.toggle('expanded');
+        if (accordion.classList.contains('expanded')) {
+          button.setAttribute('aria-expanded', 'true');
+        } else {
+          button.setAttribute('aria-expanded', 'false');
+        }
+      });
+    } else {
+      // eslint-disable-next-line no-return-assign
+      button.onclick = () => window.location.href = link.href;
+    }
     links.appendChild(button);
   });
 
   const details = document.createElement('div');
   details.classList.add('details');
+  details.setAttribute('aria-labelledby', 'expand-accordion');
   remainingDivsAfterAccordion.forEach((div) => {
     details.appendChild(div);
   });

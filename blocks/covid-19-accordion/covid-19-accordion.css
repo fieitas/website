@@ -17,6 +17,12 @@
     justify-content: space-between;
 }
 
+.covid-19-accordion .container .links {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-evenly;
+}
+
 .covid-19-accordion .container h1,h2,h3 {
     font-size: 15px;
     font-family: Lato, sans-serif;
@@ -27,5 +33,21 @@
     width: 15%;
     text-align: center;
 }
+
+.covid-19-accordion .container .details {
+    display: none;
+}
+
+.covid-19-accordion .container .expanded{
+    display: block;
+}
+
+
+
+
+
+
+
+
 
 
