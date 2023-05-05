@@ -23,47 +23,39 @@ main .carousel {
     display: flex;
     overflow: hidden;
     margin: auto;
-    width: 100%;          /* default - same as .products */
+    width: 100%;
 }
 
 main .carousel-item {
     box-sizing: border-box;
     width: 100%;
-    /*margin-right: 30px;*/
     flex: 1 0 auto;
-    /*display: flex;*/
-    /*align-items: center;*/
-    /*justify-content: center;*/
 }
 
-main .carousel-item-columns-container {
-    /*max-width: 1140px;*/
-    /*display: flex;*/
-    /*align-items: center;*/
-    /*justify-content: center;*/
+main .carousel-item-columns-container,
+main .carousel-item-column,
+main .carousel-item-image,
+main .carousel-item-image img  {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
 }
 
-/*main .carousel-item-column {*/
-/*    width: 50%;*/
-/*    padding: 0 15px;*/
-/*}*/
+/*
+    Carousel variations
+*/
 
-main .carousel-item-image img {
-    /*display: block;*/
-    /*object-fit: contain;*/
-    /*width: 100%;       !* default - same as .products *!*/
-    /*max-height: 400px; !* default - same as .products *!*/
+main .carousel.small{
+    height: 200px;
 }
 
-main .carousel-item-text .button-container {
-    /*display: inline-block;*/
+main .carousel.medium{
+    height: 400px;
 }
-
 
 /*
     Navigation buttons
 */
-
 main .carousel-nav-button {
     z-index: 990;
     min-width: unset;
@@ -109,7 +101,6 @@ main .carousel-dot-buttons {
     justify-content: center;
     gap: 10px;
     min-width: unset;
-    margin-top: 20px;
 }
 
 main .carousel-dot-button {

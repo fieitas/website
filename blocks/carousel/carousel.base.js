@@ -226,8 +226,6 @@ export class Carousel {
             parentElement.append(navButton);
         });
 
-        decorateIcons(buttonLeft);
-        decorateIcons(buttonRight);
         this.navButtonLeft = buttonLeft;
         this.navButtonRight = buttonRight;
     }
@@ -352,7 +350,7 @@ export class Carousel {
         const columnContainer = document.createElement('div');
         columnContainer.classList.add('carousel-item-columns-container');
 
-        const columns = [document.createElement('div'), document.createElement('div')];
+        const columns = [document.createElement('div')];
 
         const itemChildren = [...item.children];
         itemChildren.forEach((itemChild, idx) => {
@@ -415,6 +413,8 @@ export class Carousel {
         this.addSwipeCapability();
         this.infiniteScroll && this.setInitialScrollingPosition();
         this.cssFiles && (await defaultCSSPromise);
+        decorateIcons(this.block.parentNode);
+
     }
 }
 
