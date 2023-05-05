@@ -114,9 +114,8 @@ export function loadSidebar(element) {
 
     decorateBlock(sidebarBlock);
     element.append(sidebarSection);
-    return loadBlock(sidebarBlock);
+    loadBlock(sidebarBlock);
   }
-  return null;
 }
 
 /**
