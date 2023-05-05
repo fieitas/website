@@ -87,19 +87,32 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
 }
 
 /**
- * Gets the nav path for the current language or defaults to /unsetnav
+ * Gets the nav path and extract the language
  * @returns {string}
  */
-function getLocalNavPath() {
+const UNSET_LANG = "unset"
+function getLang(){
   const path = window.location.pathname;
   const parts = path.split('/');
   if (parts.length >= 2) {
     const language = parts[1];
     if (language) {
-      return `/${language}/nav`;
+      return `${language}`;
     }
   }
-  return '/unsetnav';
+  return UNSET_LANG ;
+}
+
+/**
+ * Gets the nav path for the current language or defaults to /unsetnav
+ * @returns {string}
+ */
+function getLocalNavPath() {
+  const lang = getLang()
+  if (lang === UNSET_LANG){
+    return '/unsetnav';
+  }
+  return `/${lang}/nav`;
 }
 
 const meteoId = 'meteo';
@@ -116,6 +129,7 @@ export async function PrintMeteoHeader() {
     let icon = '';
     let location = '';
     let temp = '';
+
 
     /* eslint no-plusplus: ["error", { "allowForLoopAfterthoughts": true }] */
     for (let i = 0; i < obj.data.length; i++) {
@@ -155,8 +169,22 @@ export async function PrintMeteoHeader() {
       }
     }
 
+    let country ='Spain';
+
+    switch (getLang()) {
+      case 'es':
+      case 'gl':
+        country = 'España'
+        break;
+      case 'fr':
+        country = 'Espagne'
+        break;
+    }
+
+    console.log(getLang())
+
     const meteoContent = div({ class: 'fade-in' });
-    meteoContent.innerHTML = `${icon} ${location}, Spain ${temp}`;
+    meteoContent.innerHTML = `${icon} ${location}, ${country} ${temp}`;
     document.querySelector(`#${meteoId}`).append(meteoContent);
   }
 }
