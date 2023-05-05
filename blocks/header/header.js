@@ -1,4 +1,5 @@
 import { getMetadata, decorateIcons } from '../../scripts/lib-franklin.js';
+import { div } from '../../scripts/dom-helpers.js';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 900px)');
@@ -86,19 +87,105 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
 }
 
 /**
- * Gets the nav path for the current language or defaults to /unsetnav
+ * Gets the nav path and extract the language
  * @returns {string}
  */
-function getLocalNavPath() {
+const UNSET_LANG = 'unset';
+function getLang() {
   const path = window.location.pathname;
   const parts = path.split('/');
   if (parts.length >= 2) {
     const language = parts[1];
     if (language) {
-      return `/${language}/nav`;
+      return `${language}`;
     }
   }
-  return '/unsetnav';
+  return UNSET_LANG;
+}
+
+/**
+ * Gets the nav path for the current language or defaults to /unsetnav
+ * @returns {string}
+ */
+function getLocalNavPath() {
+  const lang = getLang();
+  if (lang === UNSET_LANG) {
+    return '/unsetnav';
+  }
+  return `/${lang}/nav`;
+}
+
+const meteoId = 'meteo';
+
+export async function PrintMeteoHeader() {
+  const dataPath = '/datos.json?sheet=weather';
+  const resp = await fetch(dataPath);
+
+  // use default nav if no nav is configured for the current location
+  if (resp.ok) {
+    const json = await resp.text();
+    const obj = JSON.parse(json);
+
+    let icon = '';
+    let location = '';
+    let temp = '';
+
+    /* eslint no-plusplus: ["error", { "allowForLoopAfterthoughts": true }] */
+    for (let i = 0; i < obj.data.length; i++) {
+      if (obj.data[i].campo === 'iconoCielo') {
+        switch (obj.data[i].valor) {
+          case '101': // despejado
+            icon = '<i class="wi wi-day-sunny"></i>';
+            break;
+          case '103': // nuves y claros
+            icon = '<i class="wi wi-day-cloudy"></i>';
+            break;
+          case '105': // cubierto
+            icon = '<i class="wi wi-cloudy"></i>';
+            break;
+          case '107': // chuvascos
+            icon = '<i class="wi wi-day-rain"></i>';
+            break;
+          case '111': // lluvia
+            icon = '<i class="wi wi-rain"></i>';
+            break;
+          case '201': // noche despejada
+            icon = '<i class="wi wi-night-clear"></i>';
+            break;
+          case '211': // noche lluvia
+            icon = '<i class="wi wi-night-rain"></i>';
+            break;
+          default:
+        }
+      }
+
+      if (obj.data[i].campo === 'concello') {
+        location = obj.data[i].valor;
+      }
+
+      if (obj.data[i].campo === 'valorTemp') {
+        temp = `${obj.data[i].valor}º`;
+      }
+    }
+
+    let country = '';
+
+    switch (getLang()) {
+      case 'es':
+      case 'gl':
+        country = 'España';
+        break;
+      case 'fr':
+        country = 'Espagne';
+        break;
+      default:
+        country = 'Spain';
+    }
+
+    const meteoContent = div({ class: 'fade-in' });
+    meteoContent.innerHTML = `${icon} ${location}, ${country} ${temp}`;
+    document.querySelector(`#${meteoId}`).append(meteoContent);
+  }
 }
 
 /**
@@ -124,7 +211,7 @@ export default async function decorate(block) {
     nav.id = 'nav';
     nav.innerHTML = html;
 
-    const classes = ['meteo', 'brand', 'sections'];
+    const classes = ['brand', 'sections'];
     classes.forEach((c, i) => {
       const section = nav.children[i];
       if (section) section.classList.add(`nav-${c}`);
@@ -143,6 +230,10 @@ export default async function decorate(block) {
         });
       });
     }
+
+    // add meteo information
+    const meteo = div({ id: meteoId, class: ['meteo', 'nav-meteo'] });
+    nav.prepend(meteo);
 
     // hamburger for mobile
     const hamburger = document.createElement('div');

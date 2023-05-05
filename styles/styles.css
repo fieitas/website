@@ -55,6 +55,9 @@
   }
 }
 
+/*
+=== general blocks ===
+ */
 html {
   overscroll-behavior: none;
 }
@@ -174,6 +177,21 @@ a.button.secondary, button.secondary {
   color: var(--text-color)
 }
 
+/*
+=== animation ===
+ */
+.fade-in-slow,.fade-in { animation: fade-in-kf 0.5s; }
+
+.fade-in-fast { animation: fade-in-kf 0.1s; }
+
+@keyframes fade-in-kf {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/*
+=== main block ===
+ */
 main input {
   font-size: 1.25rem;
   width: 100%;

@@ -28,6 +28,14 @@ header nav[aria-expanded="true"] {
   min-height: 100vh;
 }
 
+header #meteo{
+  min-height: 11px;
+}
+
+header .wi{
+  height: 11px;
+  margin: 0 0.5em;
+}
 
 @media (min-width: 900px) {
   header {
@@ -300,7 +308,7 @@ header nav .nav-sections ul > li > ul {
     line-height: 1;
     display: flex;
     align-items: flex-end;
-    border-bottom: #7f7f7f dotted 1px;
+    border-bottom: #e9e9e9 solid 1px;
     padding-top: 15px;
     padding-bottom: 10px;
     justify-content: left;
