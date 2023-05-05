@@ -22,29 +22,30 @@ function createBanner(pictureElement, extractedInnerHTML) {
 }
 
 /**
- * Creates a div with the extracted links from the first row of document
- * @param linksArray
+ * Creates dividers with close buttons for the expanded content of accordion
  * @returns {HTMLDivElement}
  */
-function createLinks(linksArray) {
-  const links = document.createElement('div');
-  links.classList.add('links');
+function createDividerWithCloseButton() {
+  const newDiv = document.createElement('div');
+  newDiv.classList.add('covid-19-accordion', 'custom-divider');
 
-  linksArray.forEach((link, index) => {
-    const button = document.createElement('button');
-    button.textContent = link.textContent;
+  const hr = document.createElement('hr');
+  newDiv.appendChild(hr);
 
-    if (index === 0) {
-      setupFirstButton(button);
-    } else {
-      // eslint-disable-next-line no-return-assign
-      button.onclick = () => (window.location.href = link.href);
-    }
+  const closeButton = document.createElement('button');
+  closeButton.classList.add('covid-19-accordion', 'close-button');
+  // empty as we fill in from after pseudo element
+  closeButton.innerHTML = '';
+  closeButton.addEventListener('click', () => {
+    const accordion = document.querySelector('.covid-19-accordion .container .details');
+    const button = document.querySelector('#expand-accordion');
 
-    links.appendChild(button);
+    accordion.classList.remove('expanded');
+    button.setAttribute('aria-expanded', 'false');
   });
+  newDiv.appendChild(closeButton);
 
-  return links;
+  return newDiv;
 }
 
 /**
@@ -74,32 +75,30 @@ function setupFirstButton(button) {
 }
 
 /**
- * Creates dividers with close buttons for the expanded content of accordion
+ * Creates a div with the extracted links from the first row of document
+ * @param linksArray
  * @returns {HTMLDivElement}
  */
-function createDividerWithCloseButton() {
-  const newDiv = document.createElement('div');
-  newDiv.classList.add('covid-19-accordion', 'custom-divider');
+function createLinks(linksArray) {
+  const links = document.createElement('div');
+  links.classList.add('links');
 
-  const hr = document.createElement('hr');
-  newDiv.appendChild(hr);
+  linksArray.forEach((link, index) => {
+    const button = document.createElement('button');
+    button.textContent = link.textContent;
 
-  const closeButton = document.createElement('button');
-  closeButton.classList.add('covid-19-accordion', 'close-button');
-  // empty as we fill in from after pseudo element
-  closeButton.innerHTML = '';
-  closeButton.addEventListener('click', () => {
-    const accordion = document.querySelector('.covid-19-accordion .container .details');
-    const button = document.querySelector('#expand-accordion');
+    if (index === 0) {
+      setupFirstButton(button);
+    } else {
+      // eslint-disable-next-line no-return-assign
+      button.onclick = () => (window.location.href = link.href);
+    }
 
-    accordion.classList.remove('expanded');
-    button.setAttribute('aria-expanded', 'false');
+    links.appendChild(button);
   });
-  newDiv.appendChild(closeButton);
 
-  return newDiv;
+  return links;
 }
-
 
 function createDetails(remainingDivsAfterAccordion) {
   const details = document.createElement('div');
