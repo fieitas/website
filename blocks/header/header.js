@@ -90,8 +90,8 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
  * Gets the nav path and extract the language
  * @returns {string}
  */
-const UNSET_LANG = "unset"
-function getLang(){
+const UNSET_LANG = 'unset';
+function getLang() {
   const path = window.location.pathname;
   const parts = path.split('/');
   if (parts.length >= 2) {
@@ -100,7 +100,7 @@ function getLang(){
       return `${language}`;
     }
   }
-  return UNSET_LANG ;
+  return UNSET_LANG;
 }
 
 /**
@@ -108,8 +108,8 @@ function getLang(){
  * @returns {string}
  */
 function getLocalNavPath() {
-  const lang = getLang()
-  if (lang === UNSET_LANG){
+  const lang = getLang();
+  if (lang === UNSET_LANG) {
     return '/unsetnav';
   }
   return `/${lang}/nav`;
@@ -129,7 +129,6 @@ export async function PrintMeteoHeader() {
     let icon = '';
     let location = '';
     let temp = '';
-
 
     /* eslint no-plusplus: ["error", { "allowForLoopAfterthoughts": true }] */
     for (let i = 0; i < obj.data.length; i++) {
@@ -169,19 +168,19 @@ export async function PrintMeteoHeader() {
       }
     }
 
-    let country ='Spain';
+    let country = '';
 
     switch (getLang()) {
       case 'es':
       case 'gl':
-        country = 'España'
+        country = 'España';
         break;
       case 'fr':
-        country = 'Espagne'
+        country = 'Espagne';
         break;
+      default:
+        country = 'Spain';
     }
-
-    console.log(getLang())
 
     const meteoContent = div({ class: 'fade-in' });
     meteoContent.innerHTML = `${icon} ${location}, ${country} ${temp}`;
