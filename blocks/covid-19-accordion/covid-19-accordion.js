@@ -79,13 +79,13 @@ function setupFirstButton(button) {
  */
 function createDividerWithCloseButton() {
   const newDiv = document.createElement('div');
-  newDiv.classList.add('custom-divider');
+  newDiv.classList.add('covid-19-accordion', 'custom-divider');
 
   const hr = document.createElement('hr');
   newDiv.appendChild(hr);
 
   const closeButton = document.createElement('button');
-  closeButton.classList.add('close-button');
+  closeButton.classList.add('covid-19-accordion', 'close-button');
   // empty as we fill in from after pseudo element
   closeButton.innerHTML = '';
   closeButton.addEventListener('click', () => {
