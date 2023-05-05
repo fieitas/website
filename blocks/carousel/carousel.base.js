@@ -202,7 +202,7 @@ export class Carousel {
         const buttonLeft = document.createElement('button');
         buttonLeft.classList.add('carousel-nav-left');
         buttonLeft.ariaLabel = 'Scroll to previous item';
-        buttonLeft.append(span({ class: 'icon icon-chevronleft' }));
+        buttonLeft.append(span({ class: 'icon icon-chevron-left' }));
         buttonLeft.addEventListener('click', () => {
             clearInterval(this.intervalId);
             this.prevItem();
@@ -215,7 +215,7 @@ export class Carousel {
         const buttonRight = document.createElement('button');
         buttonRight.classList.add('carousel-nav-right');
         buttonRight.ariaLabel = 'Scroll to next item';
-        buttonRight.append(span({ class: 'icon icon-chevronright' }));
+        buttonRight.append(span({ class: 'icon icon-chevron-right' }));
         buttonRight.addEventListener('click', () => {
             clearInterval(this.intervalId);
             this.nextItem();
