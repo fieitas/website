@@ -1,52 +1,100 @@
-
-
 .covid-19-accordion {
     background-color: #ad660a;
     font-family: Arial, sans-serif;
     font-weight: 500;
     color: white;
     font-size: 16px;
-    border-radius: 5px;
     padding: 15px;
     display: block;
+    border-radius: 10px;
 }
 
-.covid-19-accordion .container .banner {
+.covid-19-accordion .container .banner,
+.covid-19-accordion .container .links {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
 }
 
 .covid-19-accordion .container .links {
-    display: flex;
-    align-items: flex-start;
     justify-content: space-evenly;
 }
 
-.covid-19-accordion .container h1,h2,h3 {
+.covid-19-accordion .container .links > button {
+    background-color: #b57623;
+    width: 50%;
+    margin: 0 10px;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.covid-19-accordion .container h1,
+.covid-19-accordion .container h2,
+.covid-19-accordion .container h3 {
     font-size: 15px;
     font-family: Lato, sans-serif;
-    margin-top: 0;
+    margin-top: 1rem;
 }
 
 .covid-19-accordion .container .icon {
     width: 15%;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+.covid-19-accordion .container .icon picture {
+    max-width: 80px;
+    width: 100px;
 }
 
 .covid-19-accordion .container .details {
     display: none;
 }
 
-.covid-19-accordion .container .expanded{
+.covid-19-accordion .container .expanded {
     display: block;
 }
 
+.covid-19-accordion .container .expanded > div:not(:first-child, :nth-child(2), :last-child) {
+    border-top: white dotted 1px;
+    border-bottom: white dotted 1px;
+}
 
+.custom-divider {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
+.custom-divider hr {
+    flex-grow: 1;
+    margin: 0 1rem;
+}
 
+.close-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 24px;
+    height: 24px;
+    background-color: #fff;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
 
+.close-button:hover {
+    background-color: white;
+}
 
+.close-button::after {
+    content: "x";
+    font-size: 18px;
+    font-weight: bold;
+    color: #ad660a;
+}
 
 
 
