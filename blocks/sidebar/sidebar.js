@@ -11,6 +11,7 @@ export default async function decorate(block) {
     const html = await resp.text();
     const div = document.createElement('div');
     div.id = 'sidebar';
+    div.classList.add('fade-in-fast');
     div.innerHTML = html;
     block.append(div);
   }
