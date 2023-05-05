@@ -25,8 +25,8 @@ export function sampleRUM(checkpoint, data = {}) {
       || ((dfnname, fn) => {
         sampleRUM[dfnname] = fn;
         sampleRUM.defer
-            .filter(({ fnname }) => dfnname === fnname)
-            .forEach(({ fnname, args }) => sampleRUM[fnname](...args));
+          .filter(({ fnname }) => dfnname === fnname)
+          .forEach(({ fnname, args }) => sampleRUM[fnname](...args));
       });
   sampleRUM.on = (chkpnt, fn) => { sampleRUM.cases[chkpnt] = fn; };
   defer('observe');
@@ -115,8 +115,8 @@ export function getMetadata(name) {
  */
 export function toClassName(name) {
   return typeof name === 'string'
-      ? name.toLowerCase().replace(/[^0-9a-z]/gi, '-').replace(/-+/g, '-').replace(/^-|-$/g, '')
-      : '';
+    ? name.toLowerCase().replace(/[^0-9a-z]/gi, '-').replace(/-+/g, '-').replace(/^-|-$/g, '')
+    : '';
 }
 
 /**
@@ -162,10 +162,10 @@ export async function decorateIcons(element) {
         } else {
           ICONS_CACHE[iconName] = {
             html: svg
-                .replace('<svg', `<symbol id="icons-sprite-${iconName}"`)
-                .replace(/ width=".*?"/, '')
-                .replace(/ height=".*?"/, '')
-                .replace('</svg>', '</symbol>'),
+              .replace('<svg', `<symbol id="icons-sprite-${iconName}"`)
+              .replace(/ width=".*?"/, '')
+              .replace(/ height=".*?"/, '')
+              .replace('</svg>', '</symbol>'),
           };
         }
       } catch (error) {
@@ -202,25 +202,25 @@ export async function fetchPlaceholders(prefix = 'default') {
   if (!loaded) {
     window.placeholders[`${prefix}-loaded`] = new Promise((resolve, reject) => {
       fetch(`${prefix === 'default' ? '' : prefix}/placeholders.json`)
-          .then((resp) => {
-            if (resp.ok) {
-              return resp.json();
-            }
-            throw new Error(`${resp.status}: ${resp.statusText}`);
-          }).then((json) => {
-        const placeholders = {};
-        json.data
+        .then((resp) => {
+          if (resp.ok) {
+            return resp.json();
+          }
+          throw new Error(`${resp.status}: ${resp.statusText}`);
+        }).then((json) => {
+          const placeholders = {};
+          json.data
             .filter((placeholder) => placeholder.Key)
             .forEach((placeholder) => {
               placeholders[toCamelCase(placeholder.Key)] = placeholder.Text;
             });
-        window.placeholders[prefix] = placeholders;
-        resolve();
-      }).catch((error) => {
+          window.placeholders[prefix] = placeholders;
+          resolve();
+        }).catch((error) => {
         // error loading placeholders
-        window.placeholders[prefix] = {};
-        reject(error);
-      });
+          window.placeholders[prefix] = {};
+          reject(error);
+        });
     });
   }
   await window.placeholders[`${prefix}-loaded`];
@@ -354,8 +354,8 @@ export function updateSectionsStatus(main) {
  */
 export function decorateBlocks(main) {
   main
-      .querySelectorAll('div.section > div > div')
-      .forEach(decorateBlock);
+    .querySelectorAll('div.section > div > div')
+    .forEach(decorateBlock);
 }
 
 /**
