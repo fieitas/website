@@ -82,8 +82,8 @@ function createLinks(linksArray, block) {
   links.classList.add('links');
 
   linksArray.forEach((link, index) => {
-    const button = document.createElement('button');
-    button.textContent = link.textContent;
+    const linkButton = document.createElement('button');
+    linkButton.textContent = link.textContent;
 
     if (index === 0) {
       setupFirstButton(button, block);
