@@ -4,6 +4,8 @@
  * @param extractedInnerHTML
  * @returns {HTMLDivElement}
  */
+import { button, div, domEl } from '../../scripts/dom-helpers.js';
+
 function createBanner(pictureElement, extractedInnerHTML) {
   const banner = document.createElement('div');
   banner.classList.add('banner');
@@ -27,26 +29,20 @@ function createBanner(pictureElement, extractedInnerHTML) {
  * @returns {HTMLDivElement}
  */
 function createDividerWithCloseButton(block) {
-  const newDiv = document.createElement('div');
-  newDiv.classList.add('covid-19-accordion', 'custom-divider');
-
-  const hr = document.createElement('hr');
-  newDiv.appendChild(hr);
-
-  const closeButton = document.createElement('button');
-  closeButton.classList.add('covid-19-accordion', 'close-button');
-  // empty as we fill in from after pseudo element
-  closeButton.innerHTML = '';
-  closeButton.addEventListener('click', () => {
-    const accordion = block.querySelector('.covid-19-accordion .container .details');
-    const button = block.querySelector('#expand-accordion');
+  function closeAccordion() {
+    const accordion = block.querySelector('.container .details');
+    const closeButton = block.querySelector('#expand-accordion');
 
     accordion.classList.remove('expanded');
-    button.setAttribute('aria-expanded', 'false');
-  });
-  newDiv.appendChild(closeButton);
-
-  return newDiv;
+    closeButton.setAttribute('aria-expanded', 'false');
+  }
+  return (
+    div(
+      { class: 'covid-19-accordion custom-divider' },
+      domEl('hr'),
+      button({ class: 'covid-19-accordion close-button', onclick: closeAccordion }),
+    )
+  );
 }
 
 /**
@@ -54,26 +50,25 @@ function createDividerWithCloseButton(block) {
  * @param button
  * @param block
  */
-function setupFirstButton(button, block) {
-  button.setAttribute('id', 'expand-accordion');
-  button.setAttribute('aria-expanded', 'false');
-  button.setAttribute('aria-controls', 'details');
-  button.addEventListener('click', () => {
+function setupFirstButton(expandButton, block) {
+  function toggleAccordion() {
     const accordion = block.querySelector('.covid-19-accordion .container .details');
     const existingDivider = accordion.querySelector('.custom-divider');
-
     if (!existingDivider) {
       const newDiv = createDividerWithCloseButton(block);
       accordion.prepend(newDiv);
     }
-
     accordion.classList.toggle('expanded');
     if (accordion.classList.contains('expanded')) {
-      button.setAttribute('aria-expanded', 'true');
+      expandButton.setAttribute('aria-expanded', 'true');
     } else {
-      button.setAttribute('aria-expanded', 'false');
+      expandButton.setAttribute('aria-expanded', 'false');
     }
-  });
+  }
+  expandButton.setAttribute('id', 'expand-accordion');
+  expandButton.setAttribute('aria-expanded', 'false');
+  expandButton.setAttribute('aria-controls', 'details');
+  expandButton.addEventListener('click', toggleAccordion);
 }
 
 /**
@@ -104,14 +99,11 @@ function createLinks(linksArray, block) {
 }
 
 function createDetails(remainingDivsAfterAccordion) {
-  const details = document.createElement('div');
-  details.classList.add('details');
-  details.setAttribute('aria-labelledby', 'expand-accordion');
-  remainingDivsAfterAccordion.forEach((div) => {
-    details.appendChild(div);
-  });
-
-  return details;
+  return (
+    div(
+      { class: 'details', 'aria-labelledby': 'expand-accordion' },
+      ...remainingDivsAfterAccordion,
+    ));
 }
 
 export default async function decorate(block) {
