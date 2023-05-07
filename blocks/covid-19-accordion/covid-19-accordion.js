@@ -47,7 +47,7 @@ function createDividerWithCloseButton(block) {
  * @param block
  */
 function setupFirstButton(originaLink, block) {
-  function toggleAccordion() {
+  function toggleAccordion(event) {
     const accordion = block.querySelector('.covid-19-accordion .container .details');
     const existingDivider = accordion.querySelector('.custom-divider');
     if (!existingDivider) {
@@ -56,9 +56,9 @@ function setupFirstButton(originaLink, block) {
     }
     accordion.classList.toggle('expanded');
     if (accordion.classList.contains('expanded')) {
-      expandButton.setAttribute('aria-expanded', 'true');
+      event.currentTarget.setAttribute('aria-expanded', 'true');
     } else {
-      expandButton.setAttribute('aria-expanded', 'false');
+      event.currentTarget.setAttribute('aria-expanded', 'false');
     }
   }
 
