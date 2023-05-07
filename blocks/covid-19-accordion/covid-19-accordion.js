@@ -46,7 +46,7 @@ function createDividerWithCloseButton(block) {
  * @param button
  * @param block
  */
-function setupFirstButton(originaLink, block) {
+function firstButton(originaLink, block) {
   function toggleAccordion(event) {
     const accordion = block.querySelector('.covid-19-accordion .container .details');
     const existingDivider = accordion.querySelector('.custom-divider');
@@ -80,17 +80,14 @@ function setupFirstButton(originaLink, block) {
  * @returns {HTMLDivElement}
  */
 function createLinks(linksArray, block) {
-  const links = div({ class: 'links' });
+  const [firstLink, ...restOfLinks] = linksArray;
 
-  linksArray.forEach((link, index) => {
-    if (index === 0) {
-      links.appendChild(setupFirstButton(link, block));
-    } else {
-      links.appendChild(link);
-    }
-  });
-
-  return links;
+  return (
+    div({ class: 'links' },
+      firstButton(firstLink, block),
+      ...restOfLinks,
+    )
+  )
 }
 
 function createDetails(remainingDivsAfterAccordion) {
