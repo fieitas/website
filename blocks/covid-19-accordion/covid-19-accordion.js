@@ -87,7 +87,7 @@ function createLinks(linksArray, block) {
       firstButton(firstLink, block),
       ...restOfLinks,
     )
-  )
+  );
 }
 
 function createDetails(remainingDivsAfterAccordion) {
