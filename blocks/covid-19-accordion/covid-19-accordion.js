@@ -23,9 +23,10 @@ function createBanner(pictureElement, extractedInnerHTML) {
 
 /**
  * Creates dividers with close buttons for the expanded content of accordion
+ * @param block
  * @returns {HTMLDivElement}
  */
-function createDividerWithCloseButton() {
+function createDividerWithCloseButton(block) {
   const newDiv = document.createElement('div');
   newDiv.classList.add('covid-19-accordion', 'custom-divider');
 
@@ -37,8 +38,8 @@ function createDividerWithCloseButton() {
   // empty as we fill in from after pseudo element
   closeButton.innerHTML = '';
   closeButton.addEventListener('click', () => {
-    const accordion = document.querySelector('.covid-19-accordion .container .details');
-    const button = document.querySelector('#expand-accordion');
+    const accordion = block.querySelector('.covid-19-accordion .container .details');
+    const button = block.querySelector('#expand-accordion');
 
     accordion.classList.remove('expanded');
     button.setAttribute('aria-expanded', 'false');
@@ -51,17 +52,18 @@ function createDividerWithCloseButton() {
 /**
  * Sets up the first button to expand the accordion and adds a close button to the accordion
  * @param button
+ * @param block
  */
-function setupFirstButton(button) {
+function setupFirstButton(button, block) {
   button.setAttribute('id', 'expand-accordion');
   button.setAttribute('aria-expanded', 'false');
   button.setAttribute('aria-controls', 'details');
   button.addEventListener('click', () => {
-    const accordion = document.querySelector('.covid-19-accordion .container .details');
+    const accordion = block.querySelector('.covid-19-accordion .container .details');
     const existingDivider = accordion.querySelector('.custom-divider');
 
     if (!existingDivider) {
-      const newDiv = createDividerWithCloseButton();
+      const newDiv = createDividerWithCloseButton(block);
       accordion.prepend(newDiv);
     }
 
@@ -77,9 +79,10 @@ function setupFirstButton(button) {
 /**
  * Creates a div with the extracted links from the first row of document
  * @param linksArray
+ * @param block
  * @returns {HTMLDivElement}
  */
-function createLinks(linksArray) {
+function createLinks(linksArray, block) {
   const links = document.createElement('div');
   links.classList.add('links');
 
@@ -88,7 +91,7 @@ function createLinks(linksArray) {
     button.textContent = link.textContent;
 
     if (index === 0) {
-      setupFirstButton(button);
+      setupFirstButton(button, block);
     } else {
       // eslint-disable-next-line no-return-assign
       button.onclick = () => (window.location.href = link.href);
@@ -132,8 +135,7 @@ export default async function decorate(block) {
   container.classList.add('container');
 
   container.appendChild(createBanner(pictureElement, extractedInnerHTML));
-  container.appendChild(createLinks(linksArray));
+  container.appendChild(createLinks(linksArray, block));
   container.appendChild(createDetails(remainingDivsAfterAccordion));
-
   firstDivAfterAccordion.appendChild(container);
 }
