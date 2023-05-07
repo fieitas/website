@@ -24,7 +24,8 @@
 }
 
 
-.covid-19-accordion .container .links > button {
+.covid-19-accordion .container .links > button,
+.covid-19-accordion .container .links > a {
     background-color: #b57623;
     width: 50%;
     margin: 0 8px;
@@ -32,6 +33,8 @@
     padding: 5px;
     word-wrap: break-word;
     white-space: normal;
+    font-size: 15px;
+    font-weight: normal;
 }
 
 .covid-19-accordion .container h1,
