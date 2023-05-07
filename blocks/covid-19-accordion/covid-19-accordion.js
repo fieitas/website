@@ -86,7 +86,7 @@ function createLinks(linksArray, block) {
     linkButton.textContent = link.textContent;
 
     if (index === 0) {
-      setupFirstButton(button, block);
+      setupFirstButton(linkButton, block);
     } else {
       // eslint-disable-next-line no-return-assign
       linkButton.onclick = () => (window.location.href = link.href);
