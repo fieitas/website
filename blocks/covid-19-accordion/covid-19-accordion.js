@@ -89,10 +89,10 @@ function createLinks(linksArray, block) {
       setupFirstButton(button, block);
     } else {
       // eslint-disable-next-line no-return-assign
-      button.onclick = () => (window.location.href = link.href);
+      linkButton.onclick = () => (window.location.href = link.href);
     }
 
-    links.appendChild(button);
+    links.appendChild(linkButton);
   });
 
   return links;
