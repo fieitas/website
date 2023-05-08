@@ -120,7 +120,8 @@
         align-items: center;
     }
 
-    .covid-19-accordion .container .links > button {
+    .covid-19-accordion .container .links > button,
+    .covid-19-accordion .container .links > a {
         width: 100%;
         margin-bottom: 10px;
     }
