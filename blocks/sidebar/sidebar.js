@@ -3,6 +3,9 @@
  * modified the main dom and decorates the sidebar
  * @param {Element} block The sidebar block element
  */
+import { loadBlocks } from '../../scripts/lib-franklin.js';
+import { decorateMain } from '../../scripts/scripts.js';
+
 export default async function decorate(block) {
   const navPath = block.dataset.path;
   const resp = await fetch(`${navPath}.plain.html`);
@@ -13,6 +16,8 @@ export default async function decorate(block) {
     div.id = 'sidebar';
     div.classList.add('fade-in-fast');
     div.innerHTML = html;
+    decorateMain(div);
+    await loadBlocks(div);
     block.append(div);
   }
 }

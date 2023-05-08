@@ -1,0 +1,130 @@
+.covid-19-accordion {
+    background-color: #ad660a;
+    font-family: Arial, sans-serif;
+    font-weight: 500;
+    color: white;
+    font-size: 16px;
+    padding: 15px;
+    display: block;
+    border-radius: 10px;
+}
+
+.covid-19-accordion .container .banner {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+
+.covid-19-accordion .container .links {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: stretch;
+    padding-top: 0.5rem;
+}
+
+
+.covid-19-accordion .container .links > button,
+.covid-19-accordion .container .links > a {
+    background-color: #b57623;
+    width: 50%;
+    margin: 0 8px;
+    border-radius: 10px;
+    padding: 5px;
+    word-wrap: break-word;
+    white-space: normal;
+    font-size: 15px;
+    font-weight: normal;
+}
+
+.covid-19-accordion .container h1,
+.covid-19-accordion .container h2,
+.covid-19-accordion .container h3 {
+    font-size: 15px;
+    font-family: Lato, sans-serif;
+    margin-top: 0;
+}
+
+.covid-19-accordion .container .details h1,
+.covid-19-accordion .container .details h2,
+.covid-19-accordion .container .details h3 {
+    margin-top: 1rem;
+}
+
+.covid-19-accordion .container .icon {
+    width: 15%;
+    display: flex;
+    justify-content: center;
+}
+
+.covid-19-accordion .container .icon picture {
+    max-width: 80px;
+    width: 100px;
+}
+
+.covid-19-accordion .container .details {
+    display: none;
+}
+
+.covid-19-accordion .container .expanded {
+    display: block;
+}
+
+/* .Create HR lines in the accordion for each section except the HR divider  */
+.covid-19-accordion .container .expanded > div:not(:first-child, :nth-child(2), :last-child) {
+    border-top: white dotted 1px;
+    border-bottom: white dotted 1px;
+}
+
+.covid-19-accordion .custom-divider {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 0;
+}
+
+.covid-19-accordion .custom-divider hr {
+    flex-grow: 1;
+    margin: 0 1rem;
+}
+
+.covid-19-accordion .close-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 24px;
+    height: 24px;
+    background-color: #fff;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+/* don't change the color of the close button on hover */
+.covid-19-accordion .close-button:hover {
+    background-color: white;
+}
+
+.covid-19-accordion .close-button::after {
+    content: "x";
+    font-size: 18px;
+    font-weight: bold;
+    color: #ad660a;
+}
+
+@media (max-width: 900px) {
+    .covid-19-accordion .container .links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .covid-19-accordion .container .links > button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+
+

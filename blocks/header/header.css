@@ -52,7 +52,7 @@ header .wi{
   header nav[aria-expanded="true"] {
     grid-template:
     'meteo meteo' auto
-    'brand brand' auto
+    'brand brand' 30px
     'sections sections' auto/ 0 1fr;
     min-height: 0;
     overflow: visible;
@@ -188,7 +188,6 @@ header nav[aria-expanded="true"] .nav-sections {
   display: block;
   visibility: visible;
   align-self: start;
-  padding-bottom: 30%;
 }
 
 header nav .nav-sections ul  {
