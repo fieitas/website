@@ -1,0 +1,94 @@
+:root {
+    /* Card style */
+    --gallery-aspec-ratio: 1/1;
+    --gallery-width: 48%;
+    --gallery-padding: 1%;
+}
+
+
+/*
+Reset some style
+ */
+main .gallery a.button:any-link, button{
+    border: unset;
+    background: unset;
+    color: unset;
+    white-space: unset;
+    padding: unset;
+    border-radius: unset;
+    display: unset;
+    font-weight: unset;
+}
+
+main .gallery div{
+    line-height: 0;
+}
+
+/*
+Gallery functional styles
+ */
+
+main .gallery.block{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+main .gallery.block>div {
+    flex: 0 1 var( --gallery-width);
+    padding: var( --gallery-padding);
+    aspect-ratio: var( --gallery-aspec-ratio);
+}
+
+main .gallery .gallery-missing-image,main .gallery p{
+    display: none;
+    margin: 0;
+}
+
+main .gallery .gallery-image-container>div{
+    position: relative;
+}
+
+main .gallery div,
+main .gallery div>div,
+main .gallery div>div>.gallery-image,
+main .gallery div>div>.gallery-image img{
+    height: 100%;
+    width: 100%;
+}
+
+main .gallery p.gallery-image{
+    display: block;
+
+}
+
+main .gallery div>div>.gallery-image img{
+    object-fit: cover;
+}
+
+
+main .gallery p:not(.gallery-image){
+    display: block;
+    position: absolute;
+    /* Styles for the first <p> element without the class "banana" */
+    background: rgba(126, 126, 126, 0.8);
+    line-height: 1;
+    bottom: 0;
+    padding: 6px 0;
+    width: 100%;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+
+/*
+Customizations
+ */
+
+
+
+
+
+
+
+
