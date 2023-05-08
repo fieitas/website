@@ -6,21 +6,17 @@
  */
 import { button, div, domEl } from '../../scripts/dom-helpers.js';
 
-function createBanner(pictureElement, extractedInnerHTML) {
-  const banner = document.createElement('div');
-  banner.classList.add('banner');
-
-  const info = document.createElement('div');
-  info.classList.add('info');
-  info.innerHTML = extractedInnerHTML;
-  banner.appendChild(info);
-
-  const icon = document.createElement('div');
-  icon.classList.add('icon');
-  icon.innerHTML = pictureElement.outerHTML;
-  banner.appendChild(icon);
-
-  return banner;
+function createBanner(pictureElement, elementsBeforeFirstLink) {
+  return (
+    div({ class: 'banner' },
+      div({ class: 'info' },
+        ...elementsBeforeFirstLink,
+      ),
+      div({ class: 'icon' },
+        pictureElement,
+      ),
+    )
+  );
 }
 
 /**
@@ -50,8 +46,8 @@ function createDividerWithCloseButton(block) {
  * @param button
  * @param block
  */
-function setupFirstButton(expandButton, block) {
-  function toggleAccordion() {
+function firstButton(originaLink, block) {
+  function toggleAccordion(event) {
     const accordion = block.querySelector('.covid-19-accordion .container .details');
     const existingDivider = accordion.querySelector('.custom-divider');
     if (!existingDivider) {
@@ -60,15 +56,21 @@ function setupFirstButton(expandButton, block) {
     }
     accordion.classList.toggle('expanded');
     if (accordion.classList.contains('expanded')) {
-      expandButton.setAttribute('aria-expanded', 'true');
+      event.currentTarget.setAttribute('aria-expanded', 'true');
     } else {
-      expandButton.setAttribute('aria-expanded', 'false');
+      event.currentTarget.setAttribute('aria-expanded', 'false');
     }
   }
-  expandButton.setAttribute('id', 'expand-accordion');
-  expandButton.setAttribute('aria-expanded', 'false');
-  expandButton.setAttribute('aria-controls', 'details');
-  expandButton.addEventListener('click', toggleAccordion);
+
+  return button(
+    {
+      id: 'expand-accordion',
+      'aria-expanded': 'false',
+      'aria-controls': 'details',
+      onclick: toggleAccordion,
+    },
+    originaLink.textContent,
+  );
 }
 
 /**
@@ -78,24 +80,14 @@ function setupFirstButton(expandButton, block) {
  * @returns {HTMLDivElement}
  */
 function createLinks(linksArray, block) {
-  const links = document.createElement('div');
-  links.classList.add('links');
+  const [firstLink, ...restOfLinks] = linksArray;
 
-  linksArray.forEach((link, index) => {
-    const linkButton = document.createElement('button');
-    linkButton.textContent = link.textContent;
-
-    if (index === 0) {
-      setupFirstButton(linkButton, block);
-    } else {
-      // eslint-disable-next-line no-return-assign
-      linkButton.onclick = () => (window.location.href = link.href);
-    }
-
-    links.appendChild(linkButton);
-  });
-
-  return links;
+  return (
+    div({ class: 'links' },
+      firstButton(firstLink, block),
+      ...restOfLinks,
+    )
+  );
 }
 
 function createDetails(remainingDivsAfterAccordion) {
@@ -115,18 +107,12 @@ export default async function decorate(block) {
   const firstLinkIndex = elementsAfterPicture.findIndex((element) => element.className === 'button-container');
   const elementsBeforeFirstLink = elementsAfterPicture.slice(0, firstLinkIndex);
 
-  let extractedInnerHTML = '';
-  elementsBeforeFirstLink.forEach((element) => {
-    extractedInnerHTML += element.outerHTML;
-  });
-
   const linksArray = firstDivAfterAccordion.querySelectorAll('a');
   firstDivAfterAccordion.innerHTML = '';
 
-  const container = document.createElement('div');
-  container.classList.add('container');
+  const container = div({ class: 'container' });
 
-  container.appendChild(createBanner(pictureElement, extractedInnerHTML));
+  container.appendChild(createBanner(pictureElement, elementsBeforeFirstLink));
   container.appendChild(createLinks(linksArray, block));
   container.appendChild(createDetails(remainingDivsAfterAccordion));
   firstDivAfterAccordion.appendChild(container);
