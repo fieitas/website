@@ -58,7 +58,7 @@ main .carousel.medium{
     Navigation buttons
 */
 main .carousel-nav-button {
-    z-index: 990;
+    z-index: 99;
     min-width: unset;
     padding: 0;
     position: absolute;
