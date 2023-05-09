@@ -129,14 +129,3 @@
     src: url('/styles/fonts/lato-v23-latin-italic.woff2') format('woff2'),
     url('/styles/fonts/lato-v23-latin-italic.woff') format('woff');
 }
-
-/* fontawesome */
-@font-face {
-    font-family: 'Font Awesome 5 Free';
-    font-style: normal;
-    font-weight: 900;
-    font-display: block;
-    src: url("/styles/fonts/fa-solid-900.woff2") format("woff2"),
-    url("/styles/fonts/fa-solid-900.woff") format("woff");
-}
-

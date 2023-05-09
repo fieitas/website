@@ -324,20 +324,24 @@ main .section.highlight {
 
 /* section equipamiento */
 .section.equipamiento ul > li{
-  display: inline-block;
   font-size: var(--body-font-size-xs);
   margin-right: 5px;
   background: transparent;
-  border: 1px solid #C2C2C2;
   color: var(--text-color);
-  padding: 0 6px;
-  line-height: normal;
+  padding: 0.5rem 1rem;
+  line-height: 1;
+  vertical-align: middle;
 }
 
 /* section equipamiento before adds star icon + space from font awesome */
 .section.equipamiento ul > li::before{
-  content: "\f005\00a0";
-  font-family: "Font Awesome 5 Free", sans-serif;
-  font-weight: 900;
+  content: '';
+  display: inline-block;
+  height: 1em;
+  width: 1em;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url("/icons/star.svg");
+  margin-right: 5px;
+  vertical-align: bottom;
 }
-
