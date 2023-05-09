@@ -4,6 +4,7 @@
     position: relative;
     overflow: hidden;
     max-width: 200px;
+    padding: 10px 0;
 }
 
 .enlace-con-imagen.block {
