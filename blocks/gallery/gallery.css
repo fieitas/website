@@ -67,17 +67,31 @@ main .gallery div>div>.gallery-image img{
 }
 
 
-main .gallery p:not(.gallery-image){
+main .gallery .gallery-caption{
     display: block;
     position: absolute;
-    /* Styles for the first <p> element without the class "banana" */
-    background: rgba(126, 126, 126, 0.8);
     line-height: 1;
     bottom: 0;
     padding: 6px 0;
     width: 100%;
-    text-align: center;
-    color: rgba(255, 255, 255, 0.8);
+
+}
+/*
+Gallery full screen functional styles
+ */
+
+
+#gallery-full-screen{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999999;
+}
+
+body.overflow{
+    overflow: hidden;
 }
 
 
@@ -86,9 +100,15 @@ Customizations
  */
 
 
+main .gallery .gallery-caption{
+    text-align: center;
+    background: rgba(126, 126, 126, 0.8);
+    color: rgba(255, 255, 255, 0.8);
+}
 
 
+#gallery-full-screen{
+    background: #6c6c6c;
 
-
-
+}
 

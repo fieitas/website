@@ -2,24 +2,30 @@
 
 const CLASS_IMAGE_CONTAINER ="gallery-image-container"
 const CLASS_IMAGE ="gallery-image"
+const CLASS_CAPTION ="gallery-caption"
 const CLASS_MISSING_IMAGE ="gallery-missing-image"
 
 export class Gallery {
+
     constructor(block, config) {
         // Set defaults
         this.cssFiles = [];
         this.defaultStyling = false;
 
+        // status
+        this.isFullScreen = false;
+        this.FSC = null;
+
         // set data
         this.block = block;
-
     }
 
     /*
     applyStyle navigates the gallery dom and applies styling where needed
      */
-    applyStyle(){
+    async applyStyle(){
         const childNodes = this.block.childNodes;
+        let imgId = 0
         for (let i = 0; i < childNodes.length; i++) {
             const childNode = childNodes[i];
 
@@ -30,6 +36,13 @@ export class Gallery {
                     childNode.classList.add(CLASS_MISSING_IMAGE);
                 }else {
                     childNode.classList.add(CLASS_IMAGE_CONTAINER);
+
+                    const id = imgId;
+                    picEle.onclick = () => {
+                        this.viewImage(id);
+                    };
+                    imgId++;
+
                     const parentPic = picEle.parentNode
                     if (parentPic.nodeName === 'DIV') {
                         // only image in the container
@@ -40,60 +53,68 @@ export class Gallery {
                     }else{
                         // we assume the parrent is a p element, and we have more elements in the div
                         parentPic.classList.add(CLASS_IMAGE)
+                        const caption = childNode.querySelector('p:not(.gallery-image)');
+                        caption.classList.add(CLASS_CAPTION)
                     }
                 }
             }
         }
     }
 
+    /*
+    creates the DOM elements used in the full screen mode
+     */
+    async generateFullScreenDom(){
+
+    }
+
+    viewImage(id){
+        this.goFullScreen()
+
+
+        console.log(id)
+    }
+
+    async goFullScreen(){
+        if( !this.isFullScreen){
+            this.isFullScreen = true
+
+            const body =  document.querySelector('body');
+            body.classList.add("overflow")
+            body.prepend(this.FSC)
+
+        }
+    }
+
+    async exitFullScreen(){
+        if( this.isFullScreen){
+            this.isFullScreen = false
+
+            const body =  document.querySelector('body');
+            body.classList.remove("overflow")
+            this.FSC.remove()
+        }
+    }
+
+    /*
+    Pre-generates a DOM that will contain the image carousel
+     */
+    async generateFSC(){
+        const el = document.createElement("div")
+        el.id="gallery-full-screen"
+        el.onclick = () => {
+            this.exitFullScreen()
+        }
+        this.FSC = el
+    }
 
 
     async render() {
         this.applyStyle()
-        // // copy carousel styles to the wrapper too
-        // this.block.parentElement.classList.add(
-        //     ...[...this.block.classList].filter((item, idx) => idx !== 0 && item !== 'block'),
-        // );
-        //
-        // let defaultCSSPromise;
-        // if (Array.isArray(this.cssFiles) && this.cssFiles.length > 0) {
-        //     // add default carousel classes to apply default CSS
-        //     defaultCSSPromise = new Promise((resolve) => {
-        //         this.cssFiles.forEach((cssFile) => {
-        //             loadCSS(cssFile, (e) => resolve(e));
-        //         });
-        //     });
-        //     this.block.parentElement.classList.add('carousel-wrapper');
-        //     this.block.classList.add('carousel');
-        // }
-        //
-        // this.block.innerHTML = '';
-        // this.data.forEach((item, i) => {
-        //     const itemContainer = document.createElement('div');
-        //     itemContainer.className = 'carousel-item';
-        //     if (i === this.currentIndex) {
-        //         itemContainer.classList.add('selected');
-        //     }
-        //
-        //     let renderedItem = this.cardRenderer.renderItem(item);
-        //     renderedItem = Array.isArray(renderedItem) ? renderedItem : [renderedItem];
-        //     renderedItem.forEach((renderedItemElement) => {
-        //         itemContainer.appendChild(renderedItemElement);
-        //     });
-        //     this.block.appendChild(itemContainer);
-        // });
-        //
-        // // create autoscrolling animation
-        // this.autoScroll && this.infiniteScroll
-        // && (this.intervalId = setInterval(() => { this.nextItem(); }, this.autoScrollInterval));
-        // this.dotButtons && this.createDotButtons();
-        // this.counter && this.createCounter();
-        // this.navButtons && this.createNavButtons(this.block.parentElement);
-        // this.infiniteScroll && this.createClones();
-        // this.addSwipeCapability();
-        // this.infiniteScroll && this.setInitialScrollingPosition();
-        // this.cssFiles && (await defaultCSSPromise);
-        // decorateIcons(this.block.parentNode);
+        this.generateFSC()
+
+
+
     }
 
 }
