@@ -67,10 +67,10 @@
 }
 
 @media (max-width: 900px) {
-
     .enlace-con-imagen {
         max-width: 100%;
     }
+
     .enlace-con-imagen img {
         aspect-ratio: 3/2;
     }
