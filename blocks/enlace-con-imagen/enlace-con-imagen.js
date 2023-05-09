@@ -1,5 +1,3 @@
-// import { div } from '../../scripts/dom-helpers.js';
-
 export default async function decorate(block) {
   /* make div clickable with the URL from the first link */
   function clickHandler(event) {
