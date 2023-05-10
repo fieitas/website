@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-expressions */
 import { decorateIcons, loadCSS } from '../../scripts/lib-franklin.js';
-import { div, span, p } from '../../scripts/dom-helpers.js';
+import { span } from '../../scripts/dom-helpers.js';
 
 const AUTOSCROLL_INTERVAL = 7000;
 
@@ -24,13 +24,10 @@ export class Carousel {
     this.defaultStyling = false;
     this.dotButtons = true;
     this.navButtons = true;
-    this.counter = false;
     this.infiniteScroll = true;
     this.autoScroll = true; // only available with infinite scroll
     this.autoScrollInterval = AUTOSCROLL_INTERVAL;
     this.currentIndex = 0;
-    this.counterText = '';
-    this.counterNavButtons = true;
     this.cardRenderer = this;
     // this is primarily controlled by CSS,
     // but we need to know then intention for scrolling pourposes
@@ -328,19 +325,40 @@ export class Carousel {
     this.block.parentElement.append(buttons);
   }
 
-  createCounter() {
-    const counter = div(
-      { class: 'carousel-counter' },
-      div(
-        { class: 'carousel-counter-text' },
-        p(''),
-      ),
-    );
-    if (this.counterNavButtons) {
-      this.createNavButtons(counter);
+  /*
+  clearSelected removes all the selected css class from the slides
+   */
+  clearSelected() {
+    const items = this.block.querySelectorAll('.carousel-item.selected');
+    items.forEach((item) => {
+      item.classList.remove('selected');
+    });
+  }
+
+  /*
+  navigateTo navigates to the item with numbered index
+   */
+  navigateTo(index) {
+    const item = this.block.querySelector(`.carousel-index-${index}`);
+    this.block.scrollTo({
+      top: 0,
+      left: item.offsetLeft - this.getBlockPadding(),
+    });
+    this.clearSelected();
+    item.classList.add('selected');
+
+    // remove or add disabled class
+    if (index !== 0) {
+      this.navButtonLeft.classList.remove('disabled');
     }
-    this.block.parentElement.append(counter);
-    this.updateCounterText();
+
+    if (index === 0) {
+      this.navButtonLeft.classList.add('disabled');
+    }
+
+    if (index === this.data.length - 1) {
+      this.navButtonRight.classList.add('disabled');
+    }
   }
 
   /*
@@ -394,6 +412,7 @@ export class Carousel {
     this.data.forEach((item, i) => {
       const itemContainer = document.createElement('div');
       itemContainer.className = 'carousel-item';
+      itemContainer.classList.add(`carousel-index-${i}`);
       if (i === this.currentIndex) {
         itemContainer.classList.add('selected');
       }
@@ -410,13 +429,12 @@ export class Carousel {
     this.autoScroll && this.infiniteScroll
         && (this.intervalId = setInterval(() => { this.nextItem(); }, this.autoScrollInterval));
     this.dotButtons && this.createDotButtons();
-    this.counter && this.createCounter();
     this.navButtons && this.createNavButtons(this.block.parentElement);
     this.infiniteScroll && this.createClones();
     this.addSwipeCapability();
     this.infiniteScroll && this.setInitialScrollingPosition();
     this.cssFiles && (await defaultCSSPromise);
-    decorateIcons(this.block.parentNode);
+    await decorateIcons(this.block.parentNode);
   }
 }
 

@@ -1,0 +1,161 @@
+
+
+/*
+Reset some style
+ */
+main .gallery a.button:any-link, button{
+    border: unset;
+    background: unset;
+    color: unset;
+    white-space: unset;
+    padding: unset;
+    border-radius: unset;
+    display: unset;
+    font-weight: unset;
+}
+
+main .gallery div{
+    line-height: 0;
+}
+
+/*
+Gallery functional styles
+ */
+
+main .gallery.block{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+main .gallery div,
+main .gallery div>div,
+main .gallery div>div>.gallery-image,
+main .gallery div>div>.gallery-image img{
+    height: 100%;
+    width: 100%;
+}
+
+main .gallery.block>div {
+    flex: 0 1 var( --gallery-width);
+    padding:  var( --gallery-padding-vertical) var( --gallery-padding-horizontal);
+    aspect-ratio: var( --gallery-aspec-ratio);
+}
+
+main .gallery .gallery-missing-image,main .gallery p{
+    display: none;
+    margin: 0;
+}
+
+main .gallery .gallery-image-container>div{
+    position: relative;
+}
+
+
+
+main .gallery p.gallery-image{
+    display: block;
+    cursor: pointer;
+}
+
+main .gallery div>div>.gallery-image img{
+    object-fit: cover;
+}
+
+
+main .gallery .gallery-caption{
+    display: block;
+    position: absolute;
+    line-height: 1;
+    bottom: 0;
+    padding: 6px 0;
+    width: 100%;
+
+}
+
+/*
+Gallery full screen functional styles
+ */
+
+body.overflow{
+    overflow: hidden;
+}
+
+#gallery-full-screen{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999999;
+}
+
+#gallery-full-screen .gallery-fs-container{
+    width: 100%;
+    height: 100%;
+}
+
+.gallery-fs-container .carousel-item-image img{ /* stylelint-disable-line no-descending-specificity */
+    object-fit: contain;
+}
+
+#gallery-full-screen .close{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    z-index: 99999999;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+}
+
+#gallery-full-screen .icon-close{
+    width: 30px;
+    height: 30px;
+    min-width: unset;
+    padding: 0;
+    stroke-width: 50;
+    color: #adb3b7;
+    background-color: inherit;
+}
+
+#gallery-full-screen .icon-close:hover{
+    color: white;
+}
+
+/*
+Customizations
+ */
+:root {
+    /* Card style */
+    --gallery-aspec-ratio: 1/1;
+    --gallery-width: 100%;
+    --gallery-padding-horizontal: 0%;
+    --gallery-padding-vertical: 1%;
+}
+
+
+/* small view port */
+@media (min-width: 768px) {
+    :root {
+        /* Card style */
+        --gallery-aspec-ratio: 1/1;
+        --gallery-width: 44%;
+        --gallery-padding-horizontal: 1%;
+        --gallery-padding-vertical: 1%;
+    }
+}
+
+main .gallery .gallery-caption-custom{
+    text-align: center;
+    background: rgb(126 126 126 / 80%);
+    color: rgb(255 255 255 / 80%);
+}
+
+
+
+#gallery-full-screen.custom{
+    background: rgb(191 191 191);
+    background: radial-gradient(circle, rgb(191 191 191 / 100%) 0%, rgb(51 51 51 / 100%) 100%);
+}
+
