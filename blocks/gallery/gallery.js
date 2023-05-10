@@ -136,7 +136,7 @@ export class Gallery {
       defaultStyling: true,
       renderItem(item) {
         const img = item.querySelector('img');
-        const picture = createOptimizedPicture(img.src, img.alt, false, [{ width: '700' }]);
+        const picture = createOptimizedPicture(img.src, img.alt, false, [{ media: '(min-width: 768px)', width: '1600' }, { width: '700' }]);
 
         // create the carousel content
         const columnContainer = document.createElement('div');
