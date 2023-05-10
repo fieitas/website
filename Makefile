@@ -8,6 +8,7 @@ lint: ## run code linter
 
 lint-fix: ## let the linter try to fix issue
 	@npx eslint ./ --ext .js --fix
+	@npx stylelint blocks/**/*.css styles/*.css --fix
 
 .PHONY: test
 test: ## run tests
