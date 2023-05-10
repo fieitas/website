@@ -24,7 +24,7 @@ export class Gallery {
     applyStyle navigates the gallery dom and applies styling where needed
      */
   async applyStyle() {
-    this.block.querySelectorAll('img').forEach((img) => img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ media: '(min-width: 768px)', width: '300' }, { width: '450' }])));
+    this.block.querySelectorAll('img').forEach((img) => img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [ { width: '500' }])));
 
     const { childNodes } = this.block;
     let imgId = 0;

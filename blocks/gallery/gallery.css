@@ -42,6 +42,14 @@ main .gallery.block>div {
     aspect-ratio: var( --gallery-aspec-ratio);
 }
 
+main .gallery.block>div:only-child {
+    aspect-ratio: initial;
+    flex: initial;
+}
+
+
+
+
 main .gallery .gallery-missing-image,main .gallery p{
     display: none;
     margin: 0;
