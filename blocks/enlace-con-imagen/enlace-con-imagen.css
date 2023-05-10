@@ -20,7 +20,6 @@
 }
 
 .enlace-con-imagen.block:hover {
-    transform: scale(1.05); /* increase the size by 5% on hover */
     opacity: 0.8; /* set the opacity to 80% on hover */
 }
 
@@ -53,6 +52,11 @@
     border-radius: 0;
     font-family: Lato, serif;
 }
+
+.enlace-con-imagen p{
+    margin: 0;
+}
+
 
 .enlace-con-imagen p:last-child {
     position: absolute;
