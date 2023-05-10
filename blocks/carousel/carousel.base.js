@@ -343,7 +343,6 @@ export class Carousel {
     this.block.scrollTo({
       top: 0,
       left: item.offsetLeft - this.getBlockPadding(),
-      behavior: 'smooth',
     });
     this.clearSelected();
     item.classList.add('selected');
