@@ -40,7 +40,7 @@ const socialNetworks = {
   },
 };
 
-const socialDetails = function (networkName) {
+function socialDetails(networkName) {
   const network = socialNetworks[networkName];
   const titlePrefix = `Camping Os Fieitas - ${meta.title}`;
 
@@ -55,7 +55,7 @@ const socialDetails = function (networkName) {
       .replace(`${meta.description}`, `${meta.description}`)
       .replace(`${meta.url}`, encodeURIComponent(meta.url)),
   };
-};
+}
 
 function buildShortened(block, socials) {
   const allLinks = [];
