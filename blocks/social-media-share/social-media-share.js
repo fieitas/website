@@ -1,5 +1,5 @@
 import { decorateIcons, getMetadata } from '../../scripts/lib-franklin.js';
-import { a, div, span } from '../../scripts/dom-helpers.js';
+import { a, span } from '../../scripts/dom-helpers.js';
 
 const meta = {
   title: encodeURIComponent(document.title),
@@ -7,45 +7,54 @@ const meta = {
   url: `${window.location.origin}${window.location.pathname}`,
 };
 
+const socialNetworks = {
+  mail: {
+    type: 'mail',
+    label: 'mail',
+    hrefTemplate: `mailto:?subject=${meta.title}&body=${meta.description} ${meta.url}`,
+    icon: 'mail',
+  },
+  twitter: {
+    type: 'twitter',
+    label: 'twitter',
+    hrefTemplate: `https://twitter.com/intent/tweet?url=${meta.url}&text=${meta.title}`,
+    icon: 'twitter',
+  },
+  facebook: {
+    type: 'facebook',
+    label: 'facebook',
+    hrefTemplate: `https://www.facebook.com/sharer/sharer.php?u=${meta.url}`,
+    icon: 'facebook',
+  },
+  whatsapp: {
+    type: 'whatsapp',
+    label: 'whatsapp',
+    hrefTemplate: `https://wa.me/?text=${meta.title}%20${meta.url}`,
+    icon: 'whatsapp',
+  },
+  telegram: {
+    type: 'telegram',
+    label: 'telegram',
+    hrefTemplate: `https://t.me/share/url?url=${meta.url}&text=${meta.title}`,
+    icon: 'telegram',
+  },
+};
+
 const socialDetails = function (networkName) {
-  // eslint-disable-next-line default-case
-  switch (networkName) {
-    case 'mail':
-      return {
-        type: 'mail',
-        label: 'mail',
-        href: `mailto:?subject=${meta.title}&body=${meta.description} ${meta.url}`,
-        icon: 'mail',
-      };
-    case 'twitter':
-      return {
-        type: 'twitter',
-        label: 'twitter',
-        href: `https://twitter.com/intent/tweet?url=${meta.url}&text=${meta.title}`,
-        icon: 'twitter',
-      };
-    case 'facebook':
-      return {
-        type: 'facebook',
-        label: 'facebook',
-        href: `https://www.facebook.com/sharer/sharer.php?u=${meta.url}`,
-        icon: 'facebook',
-      };
-    case 'whatsapp':
-      return {
-        type: 'whatsapp',
-        label: 'whatsapp',
-        href: `https://wa.me/?text=${meta.title}%20${meta.url}`,
-        icon: 'whatsapp',
-      };
-    case 'telegram':
-      return {
-        type: 'telegram',
-        label: 'telegram',
-        href: `https://t.me/share/url?url=${meta.url}&text=${meta.title}`,
-        icon: 'telegram',
-      };
+  const network = socialNetworks[networkName];
+  const titlePrefix = `Camping Os Fieitas - ${meta.title}`;
+
+  if (!network) {
+    return null;
   }
+
+  return {
+    ...network,
+    href: network.hrefTemplate
+      .replace(`${meta.title}`, `${titlePrefix}`)
+      .replace(`${meta.description}`, `${meta.description}`)
+      .replace(`${meta.url}`, encodeURIComponent(meta.url)),
+  };
 };
 
 function buildShortened(block, socials) {
