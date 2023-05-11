@@ -295,7 +295,7 @@ header nav .nav-sections ul > li > ul {
   }
 
 
-  header nav .nav-sections ul > li::before {
+  header nav .nav-sections ul > li::before { /* stylelint-disable-line no-descending-specificity */
     content: '';
     display: block;
     width: 0;

@@ -24,11 +24,11 @@ export class Gallery {
     applyStyle navigates the gallery dom and applies styling where needed
      */
   async applyStyle() {
-    const imgs =  this.block.querySelectorAll('img')
-    if (imgs.length ===1){
-      imgs.forEach((img) => img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [ { width: '650' }])));
-    }else{
-      imgs.forEach((img) => img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [ { width: '300' }])));
+    const imgs = this.block.querySelectorAll('img');
+    if (imgs.length === 1) {
+      imgs.forEach((img) => img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '650' }])));
+    } else {
+      imgs.forEach((img) => img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '300' }])));
     }
 
     const { childNodes } = this.block;
@@ -87,7 +87,7 @@ export class Gallery {
         if (event.key === 'ArrowRight' || event.key === ' ') {
           this.carousel.nextItem();
         }
-        if (event.key === 'ArrowLeft' ) {
+        if (event.key === 'ArrowLeft') {
           this.carousel.prevItem();
         }
       };
