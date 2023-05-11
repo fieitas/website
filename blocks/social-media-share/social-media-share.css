@@ -1,0 +1,50 @@
+
+
+section.social-media-share {
+    height: 1000;
+}
+
+.social-media-share span {
+    border-radius: 50px;
+    margin: 0.5rem;
+    padding: 0.5rem;
+}
+
+.social-media-share > a[data-type="twitter"] > span.icon-twitter {
+    background-color: #00acee;
+}
+
+.social-media-share > a[data-type="twitter"] > span.icon-twitter svg {
+    fill: #fff;
+}
+
+.social-media-share > a[data-type="facebook"] > span.icon-facebook {
+    background-color: #1977f2;
+}
+
+.social-media-share > a[data-type="facebook"] > span.icon-facebook svg {
+    fill: white;
+}
+
+.social-media-share > a[data-type="telegram"] > span.icon-telegram {
+    background-color: #0289cd;
+}
+
+.social-media-share > a[data-type="telegram"] > span.icon-telegram svg {
+    fill: #fff;
+}
+
+.social-media-share > a[data-type="whatsapp"] > span.icon-whatsapp {
+    background-color: #42d954;
+}
+
+.social-media-share > a[data-type="whatsapp"] > span.icon-whatsapp svg {
+    fill: white;
+}
+
+
+.social-media-share > a[data-type="mail"] > span.icon-mail {
+    background-color: #e9e9e9;
+}
+
+
