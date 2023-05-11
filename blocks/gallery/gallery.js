@@ -84,6 +84,12 @@ export class Gallery {
         if (event.key === 'Escape') {
           this.exitFullScreen();
         }
+        if (event.key === 'ArrowRight' || event.key === ' ') {
+          this.carousel.nextItem();
+        }
+        if (event.key === 'ArrowLeft' ) {
+          this.carousel.prevItem();
+        }
       };
       this.carousel.navigateTo(id);
     }
