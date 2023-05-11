@@ -197,10 +197,7 @@ header nav .nav-sections ul  {
   font-weight: 500;
 }
 
-header nav .nav-sections ul > li {
-  font-weight: 500;
-}
-
+header nav .nav-sections ul > li,
 header nav .nav-sections ul > li > ul > li {
   font-weight: 500;
 }
@@ -238,7 +235,7 @@ header nav .nav-sections ul > li > ul {
     content: '';
     display: inline-block;
     position: absolute;
-    top: .5em;
+    top: 5px;
     right: 2px;
     transform: rotate(135deg);
     width: 6px;
@@ -266,6 +263,7 @@ header nav .nav-sections ul > li > ul {
     flex: 0 1 auto;
     position: relative;
     font-size: var(--heading-font-size-xs);
+    text-transform: uppercase;
   }
 
 
@@ -291,13 +289,26 @@ header nav .nav-sections ul > li > ul {
     border: 1px solid #CACACA
   }
 
-  header nav .nav-sections > ul > li > ul > li {
+  header nav .nav-sections > ul > li > ul > li > a{
+    display: inline-block;
     padding: 8px 0;
   }
 
 
-  header nav .nav-sections ul > li:hover {
-    border-bottom: 1px solid black;
+  header nav .nav-sections ul > li::before {
+    content: '';
+    display: block;
+    width: 0;
+    height: 1px;
+    background: #7e7e7e;
+    transition: width .2s;
+    position: absolute;
+    bottom: -1px;
+  }
+
+  header nav .nav-sections ul > li:hover::before {
+    width: 100%;
+    transition: width .1s;
   }
 
   header nav .nav-meteo {
