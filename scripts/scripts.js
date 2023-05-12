@@ -171,7 +171,6 @@ export async function replacePricePlaceHolders(blocks) {
  * @param {Element} element the containing item where the section will be added at the end
  */
 export async function loadSidebar(element) {
-  // decorate both the sidebar and the main so only one call to JSON is needed
   const sidebarMeta = getMetadata('sidebar');
   if (sidebarMeta !== '') {
     element.classList.add('has-sidebar');
