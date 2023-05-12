@@ -3,7 +3,7 @@ import {
   decorateBlock,
   decorateBlocks,
   decorateButtons,
-  decorateIcons,
+  decorateIcons, decoratePricing,
   decorateSections,
   getMetadata,
   loadBlock,
@@ -96,7 +96,8 @@ export function addFavIcon(href) {
  * Loads the sidebar placeholder into the dom
  * @param {Element} element the containing item where the section will be added at the end
  */
-export function loadSidebar(element) {
+export async function loadSidebar(element) {
+  // decorate both the sidebar and the main so only one call to JSON is needed
   const sidebarMeta = getMetadata('sidebar');
   if (sidebarMeta !== '') {
     element.classList.add('has-sidebar');
@@ -113,8 +114,9 @@ export function loadSidebar(element) {
     sidebarSection.append(sidebarBlock);
 
     decorateBlock(sidebarBlock);
+    await decoratePricing([sidebarBlock]);
     element.append(sidebarSection);
-    loadBlock(sidebarBlock);
+    await loadBlock(sidebarBlock);
   }
 }
 
@@ -131,7 +133,7 @@ async function loadLazy(doc) {
   if (hash && element) element.scrollIntoView();
 
   loadHeader(doc.querySelector('header'));
-  loadSidebar(doc.querySelector('main'));
+  await loadSidebar(doc.querySelector('main'));
   loadFooter(doc.querySelector('footer'));
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
