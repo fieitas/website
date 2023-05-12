@@ -1,0 +1,84 @@
+
+/* buttons */
+a.button:any-link, button {
+    font-family: var(--body-font-family);
+    display: inline-block;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: 1px solid #5e5e5e;
+    padding: 5px 30px;
+    text-align: center;
+    font-style: normal;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--background-color);
+    background-color: var(--link-color);
+    margin: 16px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-radius: 2px;
+    transition: background-color 0.1s ease;
+}
+
+a.button:hover, a.button:focus, button:hover, button:focus  {
+    background-color: var(--link-hover-color);
+    cursor: pointer;
+}
+
+button:disabled, button:disabled:hover {
+    cursor: unset;
+}
+
+a.button.secondary, button.secondary {
+    background-color: unset;
+    border: 2px solid currentcolor;
+    color: var(--text-color)
+}
+
+/* Icon */
+.icon {
+    display: inline-block;
+    height: 24px;
+    width: 24px;
+}
+
+.icon svg {
+    height: 100%;
+    width: 100%;
+}
+
+/* section equipamiento */
+.section.equipamiento{
+    padding: 0 3rem ;
+    background: var(--background-secondary-color);
+    border: 1px solid var(--accent-color) ;
+    color: var(--text-secondary-color);
+}
+
+.section.equipamiento ul{
+    list-style: none;
+    columns: 2;
+    padding-left: 0;
+}
+
+.section.equipamiento ul > li{
+    list-style: none;
+    padding: 0.6rem 0;
+    text-align: left;
+}
+
+/* section equipamiento before adds star icon + space from font awesome */
+.section.equipamiento ul > li::before{
+    content: '';
+    display: inline-block;
+    font-size: var(--font-size-s);
+    height: 1.1em;
+    width: 1.1em;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("/icons/star.svg");
+    margin-right: 5px;
+    vertical-align: bottom;
+    filter: invert(40%) ;
+}

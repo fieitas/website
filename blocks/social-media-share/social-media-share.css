@@ -1,13 +1,12 @@
 
-
-section.social-media-share {
-    height: 1000;
+.social-media-share{
+    text-align: center;
 }
 
 .social-media-share span {
     border-radius: 50px;
-    margin: 0.5rem;
-    padding: 0.5rem;
+    margin: 0.4rem;
+    padding: 0.4rem;
 }
 
 .social-media-share > a[data-type="twitter"] > span.icon-twitter {
@@ -41,7 +40,6 @@ section.social-media-share {
 .social-media-share > a[data-type="whatsapp"] > span.icon-whatsapp svg {
     fill: white;
 }
-
 
 .social-media-share > a[data-type="mail"] > span.icon-mail {
     background-color: #e9e9e9;
