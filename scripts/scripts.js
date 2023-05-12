@@ -3,7 +3,7 @@ import {
   decorateBlock,
   decorateBlocks,
   decorateButtons,
-  decorateIcons, decoratePricing,
+  decorateIcons,
   decorateSections,
   getMetadata,
   loadBlock,
@@ -92,6 +92,80 @@ export function addFavIcon(href) {
   }
 }
 
+let memoizedPrices = null;
+const pricesURL = '/datos.json?sheet=prices';
+const priceCurrencySymbol = '€';
+const pricePlaceholderPrefix = 'precio ';
+
+/**
+ * replaces pricing placeholders found in the blocks, placeholders match the format
+ * ||precio <item>||, where <item> is the item to get the price of.
+ * prices are fetched from the pricesURL and cached in a memoizedPrices Map.
+ * @param blocks
+ */
+export async function replacePricePlaceHolders(blocks) {
+  // Initialize the prices map and a flag for fetch errors
+  let fetchError = false;
+
+  if (memoizedPrices === null) {
+    try {
+      // Fetch the JSON data
+      const response = await fetch(pricesURL);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const { data } = await response.json();
+
+      // Convert the data into a map for easy lookup
+      memoizedPrices = new Map(data.map((item) => [item.tipo, item.precio]));
+    } catch (error) {
+      console.error(error);
+      fetchError = true;
+      memoizedPrices = new Map(); // so we don't try to fetch again
+    }
+  }
+
+  // Define our placeholder regex
+  const placeholderRegex = new RegExp(`\\|\\|(${pricePlaceholderPrefix}.+?)\\|\\|`, 'g');
+
+  // Process each block
+  blocks.forEach((block) => {
+    // Select all text nodes in the document
+    const walker = document.createTreeWalker(block, NodeFilter.SHOW_TEXT);
+    let node;
+
+    // Walk through each text node
+    // eslint-disable-next-line no-cond-assign
+    while (node = walker.nextNode()) {
+      // Replace each instance of the placeholder with the corresponding price
+      // extractedText contains the value of the first capturing group defined in the regex
+
+      // eslint-disable-next-line no-loop-func
+      node.textContent = node.textContent.replace(placeholderRegex, (match, extractedText) => {
+        // If there was a fetch error, replace all placeholders with 'N/A'
+        if (fetchError) return 'N/A';
+
+        if (extractedText.startsWith(pricePlaceholderPrefix)) {
+          // eslint-disable-next-line no-param-reassign
+          extractedText = extractedText.slice(pricePlaceholderPrefix.length);
+        } else {
+          return match;
+        }
+
+        // Return the corresponding price or 'N/A' if the price does not exist
+        const price = memoizedPrices.get(extractedText);
+        // format price w/ currency symbol
+        return price ? `${price}${priceCurrencySymbol}` : 'N/A';
+      });
+    }
+  });
+
+  // Return the modified blocks
+  return blocks;
+}
+
 /**
  * Loads the sidebar placeholder into the dom
  * @param {Element} element the containing item where the section will be added at the end
@@ -114,9 +188,9 @@ export async function loadSidebar(element) {
     sidebarSection.append(sidebarBlock);
 
     decorateBlock(sidebarBlock);
-    await decoratePricing([sidebarBlock]);
     element.append(sidebarSection);
     await loadBlock(sidebarBlock);
+    await replacePricePlaceHolders([sidebarBlock]);
   }
 }
 
@@ -127,14 +201,15 @@ export async function loadSidebar(element) {
 async function loadLazy(doc) {
   const main = doc.querySelector('main');
   await loadBlocks(main);
+  await replacePricePlaceHolders([main]);
 
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
 
-  loadHeader(doc.querySelector('header'));
+  await loadHeader(doc.querySelector('header'));
   await loadSidebar(doc.querySelector('main'));
-  loadFooter(doc.querySelector('footer'));
+  await loadFooter(doc.querySelector('footer'));
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadCSS(`${window.hlx.codeBasePath}/styles/weather/weather-icons.min.css`);
