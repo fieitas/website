@@ -24,7 +24,12 @@ export class Gallery {
     applyStyle navigates the gallery dom and applies styling where needed
      */
   async applyStyle() {
-    this.block.querySelectorAll('img').forEach((img) => img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ media: '(min-width: 768px)', width: '300' }, { width: '450' }])));
+    const imgs = this.block.querySelectorAll('img');
+    if (imgs.length === 1) {
+      imgs.forEach((img) => img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '650' }])));
+    } else {
+      imgs.forEach((img) => img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '300' }])));
+    }
 
     const { childNodes } = this.block;
     let imgId = 0;
@@ -78,6 +83,12 @@ export class Gallery {
       onkeydown = (event) => {
         if (event.key === 'Escape') {
           this.exitFullScreen();
+        }
+        if (event.key === 'ArrowRight' || event.key === ' ') {
+          this.carousel.nextItem();
+        }
+        if (event.key === 'ArrowLeft') {
+          this.carousel.prevItem();
         }
       };
       this.carousel.navigateTo(id);

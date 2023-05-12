@@ -17,7 +17,7 @@
   --background-color: #fff;
   --overlay-background-color: #eee;
   --highlight-background-color: #ccc;
-  --text-color: #6c6c6c;
+  --text-color: #1f1f1f;
 
   /* fonts */
   --body-font-family: 'Lato', helvetica, ubuntu, roboto, noto, sans-serif;
@@ -64,7 +64,7 @@ html {
 }
 
 body {
-  font-size: var(--body-font-size-m);
+  font-size: var(--body-font-size-s);
   margin: 0;
   font-family: var(--body-font-family);
   line-height: 1.6;
@@ -268,7 +268,7 @@ main .section.sidebar-container {
 /* small view port */
 @media (min-width: 768px) {
   main.has-sidebar {
-    grid-template-columns: auto 280px ;
+    grid-template-columns: auto 350px ;
   }
 
   main .section.sidebar-container {
