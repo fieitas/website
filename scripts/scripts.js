@@ -206,9 +206,10 @@ async function loadLazy(doc) {
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
 
-  await loadHeader(doc.querySelector('header'));
-  await loadSidebar(doc.querySelector('main'));
-  await loadFooter(doc.querySelector('footer'));
+  await Promise.all([
+    loadHeader(doc.querySelector('header')),
+    loadSidebar(doc.querySelector('main')),
+    loadFooter(doc.querySelector('footer'))]);
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadCSS(`${window.hlx.codeBasePath}/styles/weather/weather-icons.min.css`);
