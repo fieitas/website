@@ -188,8 +188,9 @@ export async function loadSidebar(element) {
 
     decorateBlock(sidebarBlock);
     element.append(sidebarSection);
-    await loadBlock(sidebarBlock);
-    await replacePricePlaceHolders([sidebarBlock]);
+    loadBlock(sidebarBlock).then(() => {
+      replacePricePlaceHolders([sidebarBlock]);
+    });
   }
 }
 
@@ -206,10 +207,9 @@ async function loadLazy(doc) {
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
 
-  await Promise.all([
-    loadHeader(doc.querySelector('header')),
-    loadSidebar(doc.querySelector('main')),
-    loadFooter(doc.querySelector('footer'))]);
+  loadHeader(doc.querySelector('header'));
+  loadSidebar(doc.querySelector('main'));
+  loadFooter(doc.querySelector('footer'));
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadCSS(`${window.hlx.codeBasePath}/styles/weather/weather-icons.min.css`);
