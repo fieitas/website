@@ -1,5 +1,6 @@
 import { readBlockConfig, decorateIcons } from '../../scripts/lib-franklin.js';
 import { div } from '../../scripts/dom-helpers.js';
+
 /**
  * Gets the footer path and extract the language
  * @returns {string}
