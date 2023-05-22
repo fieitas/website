@@ -297,6 +297,11 @@ ul ul li::before {
     text-transform: uppercase;
   }
 
+  header nav .nav-sections ul li,
+  header nav .nav-sections ul li ul li{
+    padding: unset;
+    border: unset;
+  }
 
   header nav .nav-sections > ul > li > ul {
     display: none;
