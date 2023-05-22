@@ -212,23 +212,38 @@ header nav .nav-sections ul  {
   padding-left: 0;
   font-size: var(--font-size-s);
   text-transform: uppercase;
-  border-bottom: 1px solid var(--accent-color);
+  margin: 0;
+
 }
+
 header nav .nav-sections ul li  {
-  padding:  4px 0;
-
+  padding:  12px 0;
+  border-bottom: 1px solid var(--accent-color);
+  position: relative;
 }
 
-HERE: todo: improve movile menu
-
-header nav .nav-sections ul > li > ul > li::before {
-  content: '- ';
-  padding-left: 1em;
+header nav .nav-sections ul li > ul{
+  padding-top: 12px;
 }
 
-header nav .nav-sections ul > li > ul {
-  margin-top: 0;
+header nav .nav-sections  ul ul li {
+  border-bottom: none;
+  padding-left:30px;
 }
+
+header nav .nav-sections ul li:last-child{
+  padding-bottom: 0;
+}
+
+ul ul li::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 100%;
+  border-top: 1px solid var(--accent-color);
+}
+
 
 /* tablet landscape is >=900 */
 @media (min-width: 900px) {

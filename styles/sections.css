@@ -58,7 +58,6 @@ a.button.secondary, button.secondary {
 
 .section.equipamiento ul{
     list-style: none;
-    columns: 2;
     padding-left: 0;
 }
 
@@ -81,4 +80,13 @@ a.button.secondary, button.secondary {
     margin-right: 5px;
     vertical-align: bottom;
     filter: invert(40%) ;
+}
+
+/* tablet landscape is >=900 */
+@media (min-width: 900px) {
+    .section.equipamiento ul{
+        padding-left: revert;
+        columns: 2;
+    }
+
 }

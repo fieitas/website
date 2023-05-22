@@ -25,13 +25,12 @@
   /* nav height */
   --nav-desktop-height: 170px;
   --nav-height: 64px;
-
   --content-width:600px
 }
 
 /* tablet portrait is >=600 */
 @media (min-width:600px) {
-
+  /* placeholder */
 }
 
 /* tablet landscape is >=900 */
@@ -39,6 +38,7 @@
   :root {
     --content-width:768px
   }
+
   main {
     max-width: var(--content-width);
   }
@@ -49,6 +49,7 @@
   :root {
     --content-width: 1100px
   }
+
   main {
     max-width: var(--content-width);
   }
@@ -169,18 +170,6 @@ main .section.sidebar-container {
   grid-row: unset;
 }
 
-
-
-/* tablet portrait is >=600 */
-@media (min-width:600px) {
-
-}
-
-/* tablet landscape is >=900 */
-@media (min-width: 900px) {
-
-}
-
 /* desktop is >=1200 */
 @media (min-width: 1200px) {
   main.has-sidebar {
@@ -190,15 +179,16 @@ main .section.sidebar-container {
   main .section.sidebar-container {
     grid-column: 2;
     grid-row: 1 / infinite;
-    /*padding-right: 0;*/
+  }
+
+  main.has-sidebar .section:not(.sidebar-container){
+    padding-left: 0;
   }
 
   main.has-sidebar .section.sidebar-container,
   main.has-sidebar .section.sidebar-container #sidebar>.section{
     padding-right: 0;
   }
-  main.has-sidebar .section:not(.sidebar-container){
 
-    padding-left: 0;
-  }
+
 }
