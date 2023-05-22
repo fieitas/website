@@ -121,7 +121,6 @@ export async function replacePricePlaceHolders(blocks) {
       // Convert the data into a map for easy lookup
       memoizedPrices = new Map(data.map((item) => [item.tipo, item.precio]));
     } catch (error) {
-      console.error(error);
       fetchError = true;
       memoizedPrices = new Map(); // so we don't try to fetch again
     }
