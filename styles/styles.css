@@ -17,7 +17,7 @@
   --background-color: #fff;
   --overlay-background-color: #eee;
   --highlight-background-color: #ccc;
-  --text-color: #1f1f1f;
+  --text-color: #6c6c6c;
 
   /* fonts */
   --body-font-family: 'Lato', helvetica, ubuntu, roboto, noto, sans-serif;
@@ -273,7 +273,7 @@ main .section.sidebar-container {
 
   main .section.sidebar-container {
     grid-column: 2;
-    grid-row: 1 / infinite;
+    grid-row: 2 / infinite;
   }
 }
 
