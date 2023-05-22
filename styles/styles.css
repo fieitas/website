@@ -117,12 +117,7 @@ pre {
   overflow: scroll;
 }
 
-/* used as template for landing pages where full width is needed
-   landing page must include a template="landing" attribute in the
-   metadata section */
-body.landing main {
-  max-width: 100%;
-}
+
 
 main pre {
   background-color: var(--overlay-background-color);
@@ -292,6 +287,13 @@ maybe use
 /* section metadata */
 main .section.highlight {
   background-color: var(--highlight-background-color);
+}
+
+/* used as template for landing pages where full width is needed
+   landing page must include a template="landing" attribute in the
+   metadata section */
+body.landing main {
+  max-width: 100%;
 }
 
 /* section equipamiento */
