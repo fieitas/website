@@ -17,6 +17,7 @@
   --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 
   /* body sizes */
+  --font-size-xl: 48px;
   --font-size-l: 22px;
   --font-size-m: 18px;
   --font-size-s: 15px;
@@ -73,6 +74,7 @@
 /*
 === main block ===
  */
+
 
 main .section {
   padding: 10px 16px;
@@ -170,6 +172,8 @@ main .section.sidebar-container {
   grid-row: unset;
 }
 
+
+
 /* desktop is >=1200 */
 @media (min-width: 1200px) {
   main.has-sidebar {
@@ -189,6 +193,5 @@ main .section.sidebar-container {
   main.has-sidebar .section.sidebar-container #sidebar>.section{
     padding-right: 0;
   }
-
 
 }

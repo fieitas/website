@@ -90,3 +90,16 @@ a.button.secondary, button.secondary {
     }
 
 }
+
+/* used as template for landing pages where full width is needed
+   landing page must include a template="landing" attribute in the
+   metadata section */
+.landing main {
+    max-width: 100%;
+}
+
+.landing main h1, .landing main h2, .landing main h3, .landing main h4, .landing main h5, .landing main h6 {
+    text-align: left;
+    font-weight: 700;
+    font-size: var(--font-size-xl);
+}
