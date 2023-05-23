@@ -1,0 +1,105 @@
+
+/* buttons */
+a.button:any-link, button {
+    font-family: var(--body-font-family);
+    display: inline-block;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: 1px solid #5e5e5e;
+    padding: 5px 30px;
+    text-align: center;
+    font-style: normal;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--background-color);
+    background-color: var(--link-color);
+    margin: 16px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-radius: 2px;
+    transition: background-color 0.1s ease;
+}
+
+a.button:hover, a.button:focus, button:hover, button:focus  {
+    background-color: var(--link-hover-color);
+    cursor: pointer;
+}
+
+button:disabled, button:disabled:hover {
+    cursor: unset;
+}
+
+a.button.secondary, button.secondary {
+    background-color: unset;
+    border: 2px solid currentcolor;
+    color: var(--text-color)
+}
+
+/* Icon */
+.icon {
+    display: inline-block;
+    height: 24px;
+    width: 24px;
+}
+
+.icon svg {
+    height: 100%;
+    width: 100%;
+}
+
+/* section equipamiento */
+.section.equipamiento{
+    padding: 0 3rem ;
+    background: var(--background-secondary-color);
+    border: 1px solid var(--accent-color) ;
+    color: var(--text-secondary-color);
+}
+
+.section.equipamiento ul{
+    list-style: none;
+    padding-left: 0;
+}
+
+.section.equipamiento ul > li{
+    list-style: none;
+    padding: 0.6rem 0;
+    text-align: left;
+}
+
+/* section equipamiento before adds star icon + space from font awesome */
+.section.equipamiento ul > li::before{
+    content: '';
+    display: inline-block;
+    font-size: var(--font-size-s);
+    height: 1.1em;
+    width: 1.1em;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url("/icons/star.svg");
+    margin-right: 5px;
+    vertical-align: bottom;
+    filter: invert(40%) ;
+}
+
+/* tablet landscape is >=900 */
+@media (min-width: 900px) {
+    .section.equipamiento ul{
+        padding-left: revert;
+        columns: 2;
+    }
+
+}
+
+/* used as template for landing pages where full width is needed
+   landing page must include a template="landing" attribute in the
+   metadata section */
+.landing main {
+    max-width: 100%;
+}
+
+.landing main h1, .landing main h2, .landing main h3, .landing main h4, .landing main h5, .landing main h6 {
+    text-align: left;
+    font-weight: 700;
+    font-size: var(--font-size-xl);
+}
