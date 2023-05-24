@@ -19,6 +19,7 @@ a.button:any-link, button {
     text-overflow: ellipsis;
     border-radius: 2px;
     transition: background-color 0.1s ease;
+    font-size: var(--font-size-s);
 }
 
 a.button:hover, a.button:focus, button:hover, button:focus  {
@@ -102,4 +103,31 @@ a.button.secondary, button.secondary {
     text-align: left;
     font-weight: 700;
     font-size: var(--font-size-xl);
+}
+
+/* Input fields */
+main textarea,
+main input {
+    font-family: var(--body-font-family);
+    width: 100%;
+    display: block;
+    margin-bottom: 1rem;
+    padding: 0.75rem 0.6rem;
+    border: 1px solid var(--accent-color);
+    color: var(--text-color)
+}
+
+main textarea{
+    min-height: 8rem;
+}
+
+main textarea:hover,
+main input:hover {
+    border: 1px solid var(--text-secondary-color);
+}
+
+main textarea:focus-visible,
+main input:focus-visible{
+    border-color: var(--text-secondary-color);
+    outline: none;
 }
