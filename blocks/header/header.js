@@ -1,6 +1,6 @@
 import { getMetadata, decorateIcons } from '../../scripts/lib-franklin.js';
 import { div } from '../../scripts/dom-helpers.js';
-import SECTION_URL from '../../scripts/globals.js';
+import globals from '../../scripts/globals.js';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 900px)');
@@ -113,7 +113,7 @@ function getLocalNavPath() {
   if (lang === UNSET_LANG) {
     return '/unsetnav';
   }
-  return `/${lang}/${SECTION_URL}/nav`;
+  return `/${lang}/${globals.SECTION_URL}/nav`;
 }
 
 const meteoId = 'meteo';
