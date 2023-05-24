@@ -131,7 +131,7 @@ main.has-sidebar.section:not(.top) {
 
     .has-sidebar .section.top h1{
         font-size: 48px;
-        font-family: 'Montserrat', 'montserrat-normal-400-fallback';
+        font-family: Montserrat, 'montserrat-normal-400-fallback', sans-serif;
         font-weight: 700;
         color: var(--text-secondary-color);
         letter-spacing: -0.04em;

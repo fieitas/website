@@ -43,6 +43,7 @@
   main {
     max-width: var(--content-width);
   }
+
   /* header and nav occupy space to avoid CLS */
   header {
     height: 170px;
