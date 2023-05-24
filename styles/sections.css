@@ -103,3 +103,12 @@ a.button.secondary, button.secondary {
     font-weight: 700;
     font-size: var(--font-size-xl);
 }
+
+main.has-sidebar {
+    background-color: orangered;
+    grid-template-rows: repeat(2, auto);
+}
+
+main .sidebar-container {
+    width: 334px;
+}

@@ -16,7 +16,7 @@ import {
   waitForLCP,
 } from './lib-franklin.js';
 
-const LCP_BLOCKS = []; // add your LCP blocks to the list
+const LCP_BLOCKS = ['sidebar']; // add your LCP blocks to the list
 
 /**
  * Builds hero block and prepends to main in a new section.
@@ -181,8 +181,8 @@ export async function loadSidebar(element) {
     const sidebarBlock = buildBlock('sidebar', '');
     sidebarBlock.dataset.path = new URL(sidebarMeta).pathname;
 
-    const numSections = element.children.length;
-    element.style = `grid-template-rows: repeat(${numSections}, auto);`;
+    // const numSections = element.children.length;
+    // element.style = `grid-template-rows: repeat(${numSections}, auto);`;
 
     sidebarSection.append(sidebarBlock);
 
