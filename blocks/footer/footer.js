@@ -1,5 +1,6 @@
 import { readBlockConfig, decorateIcons } from '../../scripts/lib-franklin.js';
 import { div } from '../../scripts/dom-helpers.js';
+import SECTION_URL from '../../scripts/globals.js';
 
 /**
  * Gets the footer path and extract the language
@@ -27,7 +28,7 @@ function getLocalFooterPath() {
   if (lang === UNSET_LANG) {
     return '/unsetfooter';
   }
-  return `/${lang}/footer`;
+  return `/${lang}/${SECTION_URL}/footer`;
 }
 
 /**
