@@ -105,18 +105,15 @@ a.button.secondary, button.secondary {
 }
 
 .has-sidebar main {
-    background-color: orangered;
     grid-template-rows: repeat(2, auto);
 
 }
 
 .sidebar-container {
     width: 334px;
-    background-color: #00acee;
 }
 
 .section.top {
-    background-color: #a5c651;
     grid-column: span 2;
 }
 
