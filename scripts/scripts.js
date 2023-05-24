@@ -173,16 +173,11 @@ export async function replacePricePlaceHolders(blocks) {
 export async function loadSidebar(element) {
   const sidebarMeta = getMetadata('sidebar');
   if (sidebarMeta !== '') {
-    // element.classList.add('has-sidebar');
-
     const sidebarSection = document.createElement('div');
     sidebarSection.classList.add('section');
 
     const sidebarBlock = buildBlock('sidebar', '');
     sidebarBlock.dataset.path = new URL(sidebarMeta).pathname;
-
-    // const numSections = element.children.length;
-    // element.style = `grid-template-rows: repeat(${numSections}, auto);`;
 
     sidebarSection.append(sidebarBlock);
 
