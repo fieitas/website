@@ -173,7 +173,7 @@ export async function replacePricePlaceHolders(blocks) {
 export async function loadSidebar(element) {
   const sidebarMeta = getMetadata('sidebar');
   if (sidebarMeta !== '') {
-    element.classList.add('has-sidebar');
+    // element.classList.add('has-sidebar');
 
     const sidebarSection = document.createElement('div');
     sidebarSection.classList.add('section');

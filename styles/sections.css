@@ -104,11 +104,25 @@ a.button.secondary, button.secondary {
     font-size: var(--font-size-xl);
 }
 
-main.has-sidebar {
+.has-sidebar main {
     background-color: orangered;
     grid-template-rows: repeat(2, auto);
+
 }
 
-main .sidebar-container {
+.sidebar-container {
     width: 334px;
+    background-color: #00acee;
 }
+
+.section.top {
+    background-color: #a5c651;
+    grid-column: span 2;
+}
+
+main.has-sidebar.section:not(.top) {
+    grid-row: 2/ infinite;
+}
+
+
+

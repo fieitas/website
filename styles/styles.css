@@ -159,9 +159,9 @@ main {
   grid-template-columns: auto ;
 }
 
-main > *:not(.section.sidebar-container) {
-  grid-column: 1;
-}
+/*main > *:not(.section.sidebar-container) {*/
+/*  grid-column: 1;*/
+/*}*/
 
 main.has-sidebar {
   grid-template-columns: auto ;
@@ -182,7 +182,7 @@ main .section.sidebar-container {
 
   main .section.sidebar-container {
     grid-column: 2;
-    grid-row: 1 / infinite;
+    grid-row: 2 / infinite;
   }
 
   main.has-sidebar .section:not(.sidebar-container){
