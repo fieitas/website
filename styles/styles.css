@@ -12,7 +12,7 @@
   --accent-color: #dfdfdf;
 
   /* fonts */
-  --body-font-family: 'Lato', helvetica, ubuntu, roboto, noto, sans-serif;
+  --body-font-family: 'Lato', 'lato-normal-400-fallback', helvetica, ubuntu, roboto, noto, sans-serif;
   --heading-font-family: 'Montserrat', helvetica, ubuntu, roboto, noto, sans-serif;
   --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 
@@ -42,6 +42,11 @@
 
   main {
     max-width: var(--content-width);
+  }
+
+  /* header and nav occupy space to avoid CLS */
+  header {
+    height: 170px;
   }
 }
 
@@ -145,10 +150,6 @@ main {
   grid-template-columns: auto ;
 }
 
-main > *:not(.section.sidebar-container) {
-  grid-column: 1;
-}
-
 main.has-sidebar {
   grid-template-columns: auto ;
 }
@@ -179,5 +180,6 @@ main .section.sidebar-container {
   main.has-sidebar .section.sidebar-container #sidebar>.section{
     padding-right: 0;
   }
+
 
 }
