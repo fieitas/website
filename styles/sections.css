@@ -103,3 +103,52 @@ a.button.secondary, button.secondary {
     font-weight: 700;
     font-size: var(--font-size-xl);
 }
+
+.has-sidebar main {
+    grid-template-rows: repeat(2, auto);
+
+}
+
+.sidebar-container {
+    width: 334px;
+}
+
+.section.top {
+    grid-column: span 2;
+}
+
+main.has-sidebar.section:not(.top) {
+    grid-row: 2/ infinite;
+}
+
+/* top section spans across both the main content and the sidebar for desktop */
+@media (min-width: 768px) {
+    .has-sidebar .section.top {
+        grid-column: span 2;
+        padding: 0 16px;
+        text-align: center;
+    }
+
+    .has-sidebar .section.top h1{
+        font-size: 48px;
+        font-family: Montserrat, 'montserrat-normal-400-fallback', sans-serif;
+        font-weight: 700;
+        color: var(--text-secondary-color);
+        letter-spacing: -0.04em;
+    }
+
+    /* hero section spans across both the main content and the sidebar for desktop */
+    .has-sidebar .section.hero-container {
+        grid-column: span 2;
+        padding: 0 16px;
+    }
+}
+
+.sidebar .section {
+    padding: 0;
+    margin-top: 1em;
+}
+
+
+
+

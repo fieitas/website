@@ -129,3 +129,24 @@
     src: url('/styles/fonts/lato-v23-latin-italic.woff2') format('woff2'),
     url('/styles/fonts/lato-v23-latin-italic.woff') format('woff');
 }
+
+/* fallback font for Montserrat (normal - 400) */
+@font-face {
+    font-family: "montserrat-normal-400-fallback";
+    size-adjust: 111.261%;
+    src: local("Arial");
+}
+
+/* fallback font for Lato (normal - 400) */
+@font-face {
+    font-family: "lato-normal-400-fallback";
+    size-adjust: 96.939%;
+    src: local("Arial");
+}
+
+/* fallback font for weathericons (normal - 400) */
+@font-face {
+    font-family: "weathericons-normal-400-fallback";
+    size-adjust: 94.539%;
+    src: local("Arial");
+}
