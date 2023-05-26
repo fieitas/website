@@ -6,7 +6,7 @@
     },
     {
       "id": "bulk-publish",
-      "excludePaths": [ "*" ]
+      "excludePaths": [ "/ejemplos/**" ]
     }
   ]
 }
