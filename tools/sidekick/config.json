@@ -1,9 +1,11 @@
 {
-  "project": "Fieitas",
-  "host": "www.merative.com",
   "plugins": [
     {
       "id": "publish",
+      "excludePaths": [ "**/ejemplos/**" ]
+    },
+    {
+      "id": "bulk-publish",
       "excludePaths": [ "**/ejemplos/**" ]
     }
   ]
