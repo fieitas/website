@@ -3,6 +3,10 @@
     {
       "id": "publish",
       "excludePaths": [ "/ejemplos/**" ]
+    },
+    {
+      "id": "bulk-publish",
+      "excludePaths": [ "*" ]
     }
   ]
 }
