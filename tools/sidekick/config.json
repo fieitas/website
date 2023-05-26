@@ -2,11 +2,8 @@
   "plugins": [
     {
       "id": "publish",
-      "excludePaths": [ "**/ejemplos/**" ]
+      "excludePaths": [ "/ejemplos/**" ]
     },
-    {
-      "id": "bulk-publish",
-      "excludePaths": [ "**/ejemplos/**" ]
-    }
+
   ]
 }
