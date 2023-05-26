@@ -13,7 +13,7 @@
     },
     {
       "id": "publish",
-      "excludePaths": [ "**/drafts/**" ]
+      "excludePaths": [ "/ejemplos/**" ]
     },
     {
       "id": "bulk-publish",
