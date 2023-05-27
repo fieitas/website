@@ -14,25 +14,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="/scripts/lib-franklin.js" type="module"></script>
   <script src="/scripts/scripts.js" type="module" crossorigin="use-credentials"></script>
-  <script type="module">
-    import { sampleRUM } from '/scripts/lib-franklin.js';
 
-    window.addEventListener('load', () => {
-      if (document.referrer) {
-        const { origin, pathname } = new URL(document.referrer);
-        if (origin === window.location.origin) {
-          const backBtn = document.createElement('a');
-          backBtn.classList.add('button', 'error-button-back');
-          backBtn.href = pathname;
-          backBtn.textContent = 'Go back';
-          backBtn.title = 'Go back';
-          const btnContainer = document.querySelector('.button-container');
-          btnContainer.append(backBtn);
-        }
-      }
-      sampleRUM('404', { source: document.referrer, target: window.location.href });
-    });
-  </script>
   <link rel="stylesheet" href="/styles/styles.css">
   <link rel="stylesheet" href="/styles/lazy-styles.css">
   <link rel="icon" href="data:,">
@@ -44,7 +26,6 @@
   <header></header>
   <main class="error">
     <div class="section">
-      banana
       <div class="404 auto">
         404
       </div>
