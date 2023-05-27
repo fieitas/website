@@ -361,6 +361,58 @@ export class Carousel {
     }
   }
 
+  async generateFullScreenView() {
+    const el = document.createElement('div');
+    el.id = 'gallery-full-screen';
+    el.classList.add('custom');
+
+    const close = document.createElement('div');
+    close.classList.add('close');
+    close.onclick = () => {
+      // this.exitFullScreen();
+    };
+    const closeIcon = document.createElement('span');
+    closeIcon.classList.add('icon', 'icon-close');
+
+    close.appendChild(closeIcon);
+    el.appendChild(close);
+
+    await decorateIcons(close);
+
+    const container = document.createElement('div');
+    container.classList.add('gallery-fs-container');
+    el.appendChild(container);
+
+    const carousel = document.createElement('div');
+    container.appendChild(carousel);
+    return el;
+  }
+
+  async goFullScreen(id) {
+    if (!this.isFullScreen) {
+      this.isFullScreen = true;
+
+      const body = document.querySelector('body');
+      body.classList.add('overflow');
+
+      const main = document.querySelector('main');
+      main.prepend(await this.generateFullScreenView());
+
+      onkeydown = (event) => {
+        if (event.key === 'Escape') {
+          // this.exitFullScreen();
+        }
+        if (event.key === 'ArrowRight' || event.key === ' ') {
+          this.carousel.nextItem();
+        }
+        if (event.key === 'ArrowLeft') {
+          this.carousel.prevItem();
+        }
+      };
+      this.navigateTo(id);
+    }
+  }
+
   /*
     * Changing the default rendering may break carousels that rely on it
     * (e.g. CSS might not match anymore)
@@ -383,8 +435,12 @@ export class Carousel {
       columns[idx].appendChild(itemChild);
     });
 
-    columns.forEach((column) => {
+    columns.forEach((column, i) => {
       column.classList.add('carousel-item-column');
+      column.addEventListener('click', () => {
+        console.log('🍦');
+        this.goFullScreen();
+      });
       columnContainer.appendChild(column);
     });
     return columnContainer;
