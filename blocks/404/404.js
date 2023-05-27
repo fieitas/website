@@ -21,3 +21,11 @@ export default async function decorate(block) {
 
 
 }
+
+// <!--      <svg viewBox="1 0 38 18" class="error-number">-->
+// <!--        <text x="0" y="17">404</text>-->
+// <!--      </svg>-->
+// <!--      <h2 class="error-message">Page Not Found</h2>-->
+// <!--      <p class="button-container">-->
+// <!--        <a href="/" class="button secondary error-button-home">Go home</a>-->
+// <!--      </p>-->
