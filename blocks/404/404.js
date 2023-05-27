@@ -1,3 +1,8 @@
+import { loadBlocks} from "../../scripts/lib-franklin.js";
+import {div} from "../../scripts/dom-helpers.js";
+import globals from "../../scripts/globals.js";
+import {decorateMain} from "../../scripts/scripts.js";
+
 /**
  * Gets the nav path and extract the language
  * @returns {string}
@@ -15,17 +20,30 @@ function getLang() {
     return UNSET_LANG;
 }
 
-export default async function decorate(block) {
-    const lang = getLang()
-    console.log(lang)
-
-
+function getLocalPath() {
+    const lang = getLang();
+    if (lang === UNSET_LANG) {
+        return `/404`;
+    }
+    return `/${lang}/${globals.SECTION_URL}/404`;
 }
 
-// <!--      <svg viewBox="1 0 38 18" class="error-number">-->
-// <!--        <text x="0" y="17">404</text>-->
-// <!--      </svg>-->
-// <!--      <h2 class="error-message">Page Not Found</h2>-->
-// <!--      <p class="button-container">-->
-// <!--        <a href="/" class="button secondary error-button-home">Go home</a>-->
-// <!--      </p>-->
+export default async function decorate(block) {
+
+    const navPath =  getLocalPath();
+    console.log(navPath)
+    let resp = await fetch(`${navPath}.plain.html`);
+    // use default 404 if not able to find in the language folder
+    if (!resp.ok) {
+        resp = await fetch(`/${globals.DEFAULT_LANG}/${globals.SECTION_URL}/404.plain.html`);
+    }
+    if (resp.ok) {
+        const html = await resp.text();
+        const div = document.createElement('div');
+        div.innerHTML = html;
+        decorateMain(div);
+        await loadBlocks(div);
+        block.replaceWith(div)
+    }
+
+}
