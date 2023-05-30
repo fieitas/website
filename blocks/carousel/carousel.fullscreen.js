@@ -31,6 +31,31 @@ export class CarouselFullscreen {
     this.fromSmallCarousel = cfg.fromSmallCarousel || false;
   }
 
+  async goFullScreen(id) {
+    if (!this.isFullScreen) {
+      this.isFullScreen = true;
+
+      const body = document.querySelector('body');
+      body.classList.add('overflow');
+
+      const main = document.querySelector('main');
+      main.prepend(await this.generateFullScreenView());
+
+      onkeydown = (event) => {
+        if (event.key === 'Escape') {
+          // this.exitFullScreen();
+        }
+        if (event.key === 'ArrowRight' || event.key === ' ') {
+          this.carousel.nextItem();
+        }
+        if (event.key === 'ArrowLeft') {
+          this.carousel.prevItem();
+        }
+      };
+      this.navigateTo(id);
+    }
+  }
+
   async generateFullScreenView() {
     const el = document.createElement('div');
     el.id = 'gallery-full-screen';

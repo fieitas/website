@@ -361,31 +361,6 @@ export class Carousel {
     }
   }
 
-  async goFullScreen(id) {
-    if (!this.isFullScreen) {
-      this.isFullScreen = true;
-
-      const body = document.querySelector('body');
-      body.classList.add('overflow');
-
-      const main = document.querySelector('main');
-      main.prepend(await this.generateFullScreenView());
-
-      onkeydown = (event) => {
-        if (event.key === 'Escape') {
-          // this.exitFullScreen();
-        }
-        if (event.key === 'ArrowRight' || event.key === ' ') {
-          this.carousel.nextItem();
-        }
-        if (event.key === 'ArrowLeft') {
-          this.carousel.prevItem();
-        }
-      };
-      this.navigateTo(id);
-    }
-  }
-
   /*
     * Changing the default rendering may break carousels that rely on it
     * (e.g. CSS might not match anymore)
