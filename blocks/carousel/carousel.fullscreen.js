@@ -43,7 +43,7 @@ export class CarouselFullscreen {
 
       onkeydown = (event) => {
         if (event.key === 'Escape') {
-          // this.exitFullScreen();
+          this.exitFullScreen();
         }
         if (event.key === 'ArrowRight' || event.key === ' ') {
           this.carousel.nextItem();
