@@ -21,13 +21,14 @@ function byFileName(fileName) {
 }
 
 export class CarouselFullscreen {
-  constructor(block) {
-    this.isFullScreen = false;
-    this.FSC = null;
-    this.carousel = null;
-    this.smallCarousel = null;
+  constructor(block, cfg = {}) {
+    this.isFullScreen = cfg.isFullScreen || false;
+    this.FSC = cfg.FSC || null;
+    this.carousel = cfg.carousel || null;
+    this.smallCarousel = cfg.smallCarousel || null;
     this.block = block;
     this.images = this.findImages();
+    this.fromSmallCarousel = cfg.fromSmallCarousel || false;
   }
 
   async generateFullScreenView() {
@@ -115,13 +116,13 @@ export class CarouselFullscreen {
   async exitFullScreen() {
     if (this.isFullScreen) {
       this.isFullScreen = false;
-
       const body = document.querySelector('body');
       body.classList.remove('overflow');
       document.removeEventListener('keydown', this.exitFullScreen);
-      const gotoIndex = this.findSmallCarrouselIndex();
-      this.smallCarousel.navigateTo(gotoIndex);
-
+      if (this.fromSmallCarousel) {
+        const gotoIndex = this.findSmallCarrouselIndex();
+        this.smallCarousel.navigateTo(gotoIndex);
+      }
       this.FSC.remove();
     }
   }
@@ -142,7 +143,7 @@ export class CarouselFullscreen {
     return gotoIndex;
   }
 
-  async goFullScreen(fileName) {
+  async goFullScreen(targetImage) {
     if (!this.isFullScreen) {
       this.isFullScreen = true;
 
@@ -163,8 +164,11 @@ export class CarouselFullscreen {
           this.carousel.prevItem();
         }
       };
-      // find index
-      const index = this.carousel.data.findIndex(byFileName(fileName));
+      let index = targetImage;
+      if (this.fromSmallCarousel) {
+        // find index
+        index = this.carousel.data.findIndex(byFileName(targetImage));
+      }
       this.carousel.navigateTo(index);
     }
   }
@@ -214,9 +218,9 @@ export class CarouselFullscreen {
   }
 }
 
-export async function createFullScreenCarousel(block) {
+export async function createFullScreenCarousel(block, config) {
   // gallery has the CSS needed for the carousel
   loadCSS('/blocks/gallery/gallery.css');
-  const carousel = new CarouselFullscreen(block);
+  const carousel = new CarouselFullscreen(block, config);
   carousel.render();
 }

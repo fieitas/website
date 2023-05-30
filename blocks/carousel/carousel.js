@@ -10,7 +10,8 @@ export default async function decorate(block) {
     autoScroll: false,
   };
   if (block.classList.contains('fullscreen')) {
-    await createFullScreenCarousel(block, cfg);
+    const config = { ...cfg, fromSmallCarousel: true };
+    await createFullScreenCarousel(block, config);
   } else {
     await createCarousel(block, cfg);
   }
