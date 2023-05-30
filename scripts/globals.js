@@ -4,4 +4,4 @@
 const SECTION_URL = '_secciones';
 const DEFAULT_LANG = 'es';
 
-export default { SECTION_URL,DEFAULT_LANG};
+export default { SECTION_URL, DEFAULT_LANG };
