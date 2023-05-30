@@ -31,31 +31,6 @@ export class CarouselFullscreen {
     this.fromSmallCarousel = cfg.fromSmallCarousel || false;
   }
 
-  async goFullScreen(id) {
-    if (!this.isFullScreen) {
-      this.isFullScreen = true;
-
-      const body = document.querySelector('body');
-      body.classList.add('overflow');
-
-      const main = document.querySelector('main');
-      main.prepend(await this.generateFullScreenView());
-
-      onkeydown = (event) => {
-        if (event.key === 'Escape') {
-          this.exitFullScreen();
-        }
-        if (event.key === 'ArrowRight' || event.key === ' ') {
-          this.carousel.nextItem();
-        }
-        if (event.key === 'ArrowLeft') {
-          this.carousel.prevItem();
-        }
-      };
-      this.navigateTo(id);
-    }
-  }
-
   async generateFullScreenView() {
     const el = document.createElement('div');
     el.id = 'gallery-full-screen';
@@ -158,68 +133,26 @@ export class CarouselFullscreen {
   // eg: clones for infinite scroll
   findSmallCarouselIndex() {
     const currentImage = this.carousel.block.querySelector('#gallery-full-screen .selected img');
-
-    if (!currentImage) {
-      console.error('Current image not found');
-      return;
-    }
-
-    // Extract the file name from the current image
     const fileName = extractImageName(currentImage);
-
-    // Find all the pictures in the small carousel
     const picturesInCarousel = this.smallCarousel.block.querySelectorAll('picture');
 
-    if (!picturesInCarousel.length) {
-      console.error('Pictures in small carousel not found');
-      return;
-    }
-
-    // Convert the NodeList to an array
     const pictureArray = Array.from(picturesInCarousel);
 
     // Find the index of the picture with the same file name as the current image
     const pictureIndex = pictureArray.findIndex(byFileName(fileName));
 
-    if (pictureIndex < 0) {
-      console.error('Picture with the same file name not found');
-      return;
-    }
-
     // Get the image in the found picture
     const pictureImage = pictureArray[pictureIndex].querySelector('img');
-
-    if (!pictureImage) {
-      console.error('Image in found picture not found');
-      return;
-    }
-
-    // Get the src of the image
     const pictureImageSrc = pictureImage.getAttribute('src');
 
     // Find the image with the same src in the small carousel block
     const smallCarouselImage = this.smallCarousel.block.querySelector(`img[src="${pictureImageSrc}"]`);
 
-    if (!smallCarouselImage) {
-      console.error('Image in small carousel block not found');
-      return;
-    }
-
     // Get the closest div.carousel-item ancestor of the image
     const carouselItem = smallCarouselImage.closest('div.carousel-item');
 
-    if (!carouselItem) {
-      console.error('div.carousel-item ancestor of image not found');
-      return;
-    }
-
     // Extract the index from the class name (usually carousel-index-{index})
     const carouselItemClass = carouselItem.classList[1];
-
-    if (!carouselItemClass) {
-      console.error('div.carousel-item does not have a second class');
-      return;
-    }
 
     const carouselIndex = carouselItemClass.split('-').pop();
 
