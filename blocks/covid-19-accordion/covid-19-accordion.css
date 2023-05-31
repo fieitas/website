@@ -1,5 +1,5 @@
 .covid-19-accordion {
-    background-color: #814C09;
+    background-color: #513006;
     font-family: Arial, sans-serif;
     font-weight: 500;
     color: white;
@@ -26,7 +26,7 @@
 
 .covid-19-accordion .container .links > button,
 .covid-19-accordion .container .links > a {
-    background-color: #b57623;
+    background-color: #7F4B06;
     width: 50%;
     margin: 0 8px;
     border-radius: 10px;
