@@ -161,15 +161,18 @@ main .section.sidebar-container {
 
 
 
-/* desktop is >=1200 */
+/* > tablet  */
 @media (min-width: 1200px) {
   main.has-sidebar {
     grid-template-columns: auto 350px ;
   }
 
+  /*  due to implicit rows we cannot use -1 for spanning all rows in the sidebar
+    instead we use 99 expecting there will never be more than 99 rows
+ */
   main .section.sidebar-container {
     grid-column: 2;
-    grid-row: 2 / infinite;
+    grid-row: 2 / span 99;
   }
 
   main.has-sidebar .section:not(.sidebar-container){

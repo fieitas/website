@@ -132,25 +132,39 @@ main input:focus-visible{
     font-size: var(--font-size-xl);
 }
 
-.has-sidebar main {
-    grid-template-rows: repeat(2, auto);
-
+.sidebar .section {
+    padding: 0;
+    margin-top: 1em;
 }
 
-.sidebar-container {
-    width: 334px;
+.has-sidebar main > .section:not(.top):not(.sidebar-container) {
+    grid-column: 1;
 }
+
+.has-sidebar .section.top {
+    grid-column: 1;
+    padding: 0 16px;
+    text-align: center;
+}
+
+
 
 .section.top {
     grid-column: span 2;
 }
 
+
 main.has-sidebar.section:not(.top) {
-    grid-row: 2/ infinite;
+    grid-row: 2;
 }
 
+
+
 /* top section spans across both the main content and the sidebar for desktop */
-@media (min-width: 768px) {
+@media (min-width: 1200px) {
+    .sidebar-container {
+        max-width: 334px;
+    }
     .has-sidebar .section.top {
         grid-column: span 2;
         padding: 0 16px;
@@ -172,10 +186,7 @@ main.has-sidebar.section:not(.top) {
     }
 }
 
-.sidebar .section {
-    padding: 0;
-    margin-top: 1em;
-}
+
 
 
 
