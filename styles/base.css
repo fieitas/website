@@ -50,10 +50,10 @@ h1::after{
 }
 
 h2{
-    text-align: center ;
+    text-align: left;
     text-transform: uppercase;
-    font-weight: 400;
     font-size: var(--font-size-m);
+    color: var(--text-secondary-color);
 }
 
 h3,h4,h5{
