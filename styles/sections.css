@@ -160,6 +160,10 @@ main.has-sidebar.section:not(.top) {
     grid-row: 2;
 }
 
+.sidebar-container {
+    min-width: 334px;
+}
+
 
 
 /* top section spans across both the main content and the sidebar for desktop */
