@@ -66,7 +66,8 @@ export function decorateMain(main) {
  * @param {Element} doc The container element
  */
 async function loadEager(doc) {
-  // document.documentElement.lang = 'en';
+  const lang = getMetadata('lang');
+  if (lang) document.documentElement.lang = lang;
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   if (main) {
