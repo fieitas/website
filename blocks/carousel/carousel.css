@@ -130,6 +130,7 @@ main .hero-slider .carousel-item-image {
 /* hero slider text */
 main .hero-slider .carousel-item-text {
     position: absolute;
+    width: 100%;
     z-index: 1;
     background-color: rgb(0 0 0 / 50%);
     min-height: 188px;
