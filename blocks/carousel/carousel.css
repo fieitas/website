@@ -5,7 +5,7 @@
 */
 
 
-main div.carousel-wrapper {
+div.carousel-wrapper {
     width: 100%;
     margin: 0;
     padding: 0;
@@ -13,11 +13,11 @@ main div.carousel-wrapper {
     max-width: unset;
 }
 
-main div.carousel-wrapper:last-child {
+div.carousel-wrapper:last-child {
     margin-bottom: 0 !important;
 }
 
-main .carousel {
+.carousel {
     box-sizing: border-box;
     display: flex;
     overflow: hidden;
@@ -26,16 +26,16 @@ main .carousel {
     height: 100%;
 }
 
-main .carousel-item {
+.carousel-item {
     box-sizing: border-box;
     width: 100%;
     flex: 1 0 auto;
 }
 
-main .carousel-item-columns-container,
-main .carousel-item-column,
-main .carousel-item-image,
-main .carousel-item-image img  {
+.carousel-item-columns-container,
+.carousel-item-column,
+.carousel-item-image,
+.carousel-item-image img {
     height: 100%;
     width: 100%;
     object-fit: cover;
@@ -45,18 +45,18 @@ main .carousel-item-image img  {
     Carousel variations
 */
 
-main .carousel.small{
+.carousel.small{
     height: 200px;
 }
 
-main .carousel.medium{
+.carousel.medium{
     height: 400px;
 }
 
 /*
     Navigation buttons
 */
-main .carousel-nav-button {
+.carousel-nav-button {
     z-index: 99;
     min-width: unset;
     padding: 0;
@@ -70,39 +70,39 @@ main .carousel-nav-button {
     background-color: inherit;      /* default - same as .products */
 }
 
-main .carousel-nav-button.disabled {
+.carousel-nav-button.disabled {
     display: none;
 }
 
-main .carousel-nav-button:hover {
+.carousel-nav-button:hover {
     color: white;
 }
 
-main .carousel-nav-button .icon {
+.carousel-nav-button .icon {
     height: 50px;
     width: 50px;
     stroke-width: 50;
 }
 
-main .carousel-nav-left {
+.carousel-nav-left {
     left: 20px;
 }
 
-main .carousel-nav-right {
+.carousel-nav-right {
     right: 20px;
 }
 
 /*
     Navigation dots
 */
-main .carousel-dot-buttons {
+.carousel-dot-buttons {
     display: flex;
     justify-content: center;
     gap: 10px;
     min-width: unset;
 }
 
-main .carousel-dot-button {
+.carousel-dot-button {
     min-width: unset;
     height: 10px;
     width: 10px;
@@ -112,24 +112,25 @@ main .carousel-dot-button {
     padding: 0;
 }
 
-main .carousel-dot-button.selected {
+.carousel-dot-button.selected {
     background-color: #cacaca;
     border: 0;
 }
 
 /* hero slider stying */
-main .hero-slider .carousel-item {
+.hero-slider .carousel-item {
     position: relative;
     aspect-ratio: 16/9; /* for hero slider */
 }
 
-main .hero-slider .carousel-item-image {
+.hero-slider .carousel-item-image {
     position: absolute;
 }
 
 /* hero slider text */
-main .hero-slider .carousel-item-text {
+.hero-slider .carousel-item-text {
     position: absolute;
+    box-sizing: border-box;
     width: 100%;
     z-index: 1;
     background-color: rgb(0 0 0 / 50%);
@@ -140,7 +141,7 @@ main .hero-slider .carousel-item-text {
 }
 
 /* hero slider text */
-main .carousel-item-text p {
+ .hero-slider .carousel-item-text p {
     margin: 10px 0 16px;
     line-height: 1.2;
     font-weight: 400;
@@ -148,7 +149,7 @@ main .carousel-item-text p {
 }
 
 /* hero slider text */
-main .carousel-item-text h2 {
+ .hero-slider .carousel-item-text h2 {
     margin: 0;
     margin-top: 16px;
     font-weight: 200;
@@ -156,3 +157,22 @@ main .carousel-item-text h2 {
     overflow-wrap: break-word;
     color: white;
 }
+
+@media (max-width: 768px) {
+    .carousel-nav-button {
+        display: none;
+    }
+
+    .hero-slider .carousel-item-text {
+        height: 100%;
+        padding: 10px;
+    }
+
+    .hero-slider .carousel-item-text h2 {
+        margin: 10px 0 16px;
+        line-height: 1.2;
+        font-weight: 200;
+        font-size: 12px;
+    }
+}
+
