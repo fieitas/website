@@ -371,7 +371,10 @@ export class Carousel {
     const columnContainer = document.createElement('div');
     columnContainer.classList.add('carousel-item-columns-container');
 
-    const columns = [document.createElement('div')];
+    const columns = [
+      document.createElement('div'),
+      document.createElement('div'),
+    ];
 
     const itemChildren = [...item.children];
     itemChildren.forEach((itemChild, idx) => {
