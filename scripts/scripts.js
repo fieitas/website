@@ -196,7 +196,7 @@ export async function loadSidebar(element) {
  */
 async function loadLazy(doc) {
   const main = doc.querySelector('main');
-  loadBlocks(main);
+  await loadBlocks(main);
   replacePricePlaceHolders([main]);
 
   const { hash } = window.location;
