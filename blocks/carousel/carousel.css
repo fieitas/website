@@ -158,7 +158,7 @@ div.carousel-wrapper:last-child {
     color: white;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 600px) {
     .hero-slider .carousel-nav-button {
         display: none;
     }
