@@ -196,16 +196,18 @@ export async function loadSidebar(element) {
  */
 async function loadLazy(doc) {
   const main = doc.querySelector('main');
-  await loadBlocks(main);
-  replacePricePlaceHolders([main]);
 
-  const { hash } = window.location;
-  const element = hash ? doc.getElementById(hash.substring(1)) : false;
-  if (hash && element) element.scrollIntoView();
+  replacePricePlaceHolders([main]);
 
   loadHeader(doc.querySelector('header'));
   loadSidebar(doc.querySelector('main'));
   loadFooter(doc.querySelector('footer'));
+
+  await loadBlocks(main);
+
+  const { hash } = window.location;
+  const element = hash ? doc.getElementById(hash.substring(1)) : false;
+  if (hash && element) element.scrollIntoView();
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadCSS(`${window.hlx.codeBasePath}/styles/weather/weather-icons.min.css`);
