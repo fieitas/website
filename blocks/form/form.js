@@ -63,7 +63,17 @@ function createButton(fd) {
         button.setAttribute('disabled', '');
         await submitForm(form);
         const redirectTo = fd.Extra;
-        window.location.href = redirectTo;
+        if (redirectTo !== '') {
+          window.location.href = redirectTo;
+        } else {
+          const done = form.querySelector('.done-message');
+          done.classList.remove('hidden');
+          setTimeout(() => {
+            done.classList.add('hidden');
+          }, 3000);
+        }
+        form.reset();
+        button.removeAttribute('disabled');
       }
     });
   }
@@ -132,6 +142,18 @@ function fill(form) {
   }
 }
 
+function createDoneMsg(fd) {
+  const msg = document.createElement('div');
+
+  msg.classList.add('hidden', 'done-message');
+
+  const text = document.createElement('p');
+  text.innerHTML += fd.Placeholder;
+  msg.append(text);
+
+  return msg;
+}
+
 async function createForm(formURL) {
   const { pathname, search } = new URL(formURL);
   const fetchUrl = pathname + search;
@@ -164,6 +186,9 @@ async function createForm(formURL) {
       case 'text-area':
         fieldWrapper.append(createLabel(fd));
         fieldWrapper.append(createTextArea(fd));
+        break;
+      case 'meta-done':
+        fieldWrapper.append(createDoneMsg(fd));
         break;
       case 'submit':
         fieldWrapper.append(createButton(fd));

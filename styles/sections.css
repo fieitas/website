@@ -45,7 +45,8 @@ main input {
     margin-bottom: 1rem;
     padding: 0.75rem 0.6rem;
     border: 1px solid var(--accent-color);
-    color: var(--text-color)
+    color: var(--text-color);
+    box-sizing: border-box;
 }
 
 main textarea{

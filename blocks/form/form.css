@@ -1,1 +1,39 @@
-/* placeholder */
+
+.form-wrapper{
+    position: relative;
+
+}
+
+.form-container .done-message.hidden{
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s 2s, opacity 2s linear;
+}
+
+.form-container .done-message{
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.2s linear;
+    background-color: rgb(80 80 80 / 70%);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0 ;
+    right: 0;
+    margin: 2rem;
+    padding: 2rem;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle
+}
+
+.form-container .done-message>p{
+    color: white;
+    position: absolute;
+    margin: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 120%;
+}
+
