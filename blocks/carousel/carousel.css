@@ -159,7 +159,7 @@ div.carousel-wrapper:last-child {
 }
 
 @media (max-width: 768px) {
-    .carousel-nav-button {
+    .hero-slider .carousel-nav-button {
         display: none;
     }
 
