@@ -388,9 +388,6 @@ export class Carousel {
 
     columns.forEach((column) => {
       column.classList.add('carousel-item-column');
-      column.addEventListener('click', () => {
-        this.goFullScreen();
-      });
       columnContainer.appendChild(column);
     });
     return columnContainer;
