@@ -197,13 +197,14 @@ export async function loadSidebar(element) {
 async function loadLazy(doc) {
   const main = doc.querySelector('main');
 
-  replacePricePlaceHolders([main]);
+  await replacePricePlaceHolders([main]);
+  await Promise.all(
+    loadBlocks(main),
+    loadHeader(doc.querySelector('header')),
+    loadSidebar(doc.querySelector('main')),
+    loadFooter(doc.querySelector('footer')),
+  )
 
-  loadHeader(doc.querySelector('header'));
-  loadSidebar(doc.querySelector('main'));
-  loadFooter(doc.querySelector('footer'));
-
-  await loadBlocks(main);
 
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
