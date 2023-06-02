@@ -371,7 +371,10 @@ export class Carousel {
     const columnContainer = document.createElement('div');
     columnContainer.classList.add('carousel-item-columns-container');
 
-    const columns = [document.createElement('div')];
+    const columns = [
+      document.createElement('div'),
+      document.createElement('div'),
+    ];
 
     const itemChildren = [...item.children];
     itemChildren.forEach((itemChild, idx) => {
@@ -385,9 +388,6 @@ export class Carousel {
 
     columns.forEach((column) => {
       column.classList.add('carousel-item-column');
-      column.addEventListener('click', () => {
-        this.goFullScreen();
-      });
       columnContainer.appendChild(column);
     });
     return columnContainer;
