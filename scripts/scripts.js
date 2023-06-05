@@ -22,7 +22,6 @@ const LCP_BLOCKS = []; // add your LCP blocks to the list
  * Builds hero block and prepends to main in a new section.
  * @param {Element} main The container element
  */
-// TODO: AFAIK we don't need the hero block
 function buildHeroBlock(main) {
   const h1 = main.querySelector('h1');
   const picture = main.querySelector('picture');
@@ -208,7 +207,7 @@ async function loadLazy(doc) {
   loadFooter(doc.querySelector('footer'));
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
-  loadCSS(`${window.hlx.codeBasePath}/styles/weather/weather-icons.min.css`);
+
   addFavIcon(`${window.hlx.codeBasePath}/styles/favicon.png`);
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
