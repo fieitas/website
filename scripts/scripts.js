@@ -208,7 +208,7 @@ async function loadLazy(doc) {
   loadFooter(doc.querySelector('footer'));
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
-  loadCSS(`${window.hlx.codeBasePath}/styles/weather/weather-icons.min.css`);
+
   addFavIcon(`${window.hlx.codeBasePath}/styles/favicon.png`);
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
