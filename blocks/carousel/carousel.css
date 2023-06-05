@@ -102,6 +102,12 @@ div.carousel-wrapper:last-child {
     min-width: unset;
 }
 
+@media (max-width: 600px) {
+    .carousel-dot-buttons {
+        display: none;
+    }
+}
+
 .carousel-dot-button {
     min-width: unset;
     height: 10px;
