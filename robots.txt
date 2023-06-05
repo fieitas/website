@@ -1,0 +1,5 @@
+user-agent: *
+allow: /
+disallow: /ejemplos/
+
+sitemap: https://www.fieitas.com/sitemap.xml
