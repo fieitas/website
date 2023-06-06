@@ -186,3 +186,9 @@ div.carousel-wrapper:last-child {
     }
 }
 
+
+/* Fullscreen variation */
+.carousel.fullscreen .carousel-item-image {
+    cursor: pointer;
+}
+
