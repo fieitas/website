@@ -233,7 +233,7 @@ export default async function decorate(block) {
       });
     }
 
-    // add meteo information
+    // add meteo information.
     const meteo = div({ id: meteoId, class: ['meteo', 'nav-meteo'] });
     nav.prepend(meteo);
 
